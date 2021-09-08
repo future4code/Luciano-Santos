@@ -1,0 +1,30 @@
+Respostas - Exercícios de interpretação de código
+
+1-  let a = 10
+    let b = 10
+
+    console.log(b) --> Imprimirá 10.
+
+    b = 5
+    console.log(a, b) --> Imprimirá 10 5
+________________________________________________________
+
+2-  let a = 10
+    let b = 20
+    let c
+    c = a
+    b = c
+    a = b
+
+    console.log(a, b, c) --> Imprimirá 10 10 10
+
+________________________________________________________
+
+3-  let p = prompt("Quantas horas você trabalha por dia?")
+    let t = prompt("Quanto você recebe por dia?")
+    alert(`Voce recebe ${t/p} por hora`)
+
+    R: Para variável 'p', sugiro horasTrabDiaria
+       Para variável 't', sugiro ganhoDiario 
+
+       O programa retorna, o valor da hora trabalhada. 
