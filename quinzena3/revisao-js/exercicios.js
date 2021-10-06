@@ -63,7 +63,13 @@ function retornaExpressoesBooleanas() {
 
 // EXERCÍCIO 07
 function retornaNNumerosPares(n) {
-
+  const numerosPares = []
+    for(i = 0; numerosPares.length <= n - 1; i++){
+    if(i % 2 === 0){
+      numerosPares.push(i)
+    }
+  }
+  return numerosPares
 }
 
 // EXERCÍCIO 08
