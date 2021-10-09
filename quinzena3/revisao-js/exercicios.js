@@ -64,12 +64,12 @@ function retornaExpressoesBooleanas() {
 // EXERCÍCIO 07
 function retornaNNumerosPares(n) {
   const numerosPares = []
-    for(i = 0; numerosPares.length <= n - 1; i++){
-    if(i % 2 === 0){
-      numerosPares.push(i)
-    }
+  for(i = 0; numerosPares.length <= n - 1; i++){
+  if(i % 2 === 0){
+    numerosPares.push(i)
   }
-  return numerosPares
+}
+return numerosPares
 }
 
 // EXERCÍCIO 08
@@ -85,13 +85,38 @@ function checaTriangulo(a, b, c) {
 
 // EXERCÍCIO 09
 function comparaDoisNumeros(num1, num2) {
-  // Formato do objeto a ser retornado:
-  // {
-  //   maiorNumero: X,
-  //   maiorDivisivelPorMenor: Y,
-  //   diferenca: Z
-  // }
+  
+  let maior
+  let menor
+  
+  const defineQualmaiorQualMenor = (valor1, valor2) =>{
+    if(valor1 > valor2){
+      maior = valor1
+      menor = valor2
+    }else{
+      maior = valor2
+      menor = valor1
+    }
+  }
+  defineQualmaiorQualMenor(num1, num2)
+  
+  const defineSeMaiorEDivisivelPorMenor = (maiorNumero, menorNumero) =>{
+    if(maiorNumero % menorNumero === 0 ){
+      return true
+    }else{
+      return false
+    }
+  }
+
+  let objeto = {
+    maiorNumero: maior,
+    maiorDivisivelPorMenor: defineSeMaiorEDivisivelPorMenor(maior, menor),
+    diferenca: maior - menor
+  }
+  return objeto
 }
+
+
 
 // EXERCÍCIO 10
 function segundoMaiorEMenor(array) {
