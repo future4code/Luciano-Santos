@@ -116,12 +116,48 @@ function comparaDoisNumeros(num1, num2) {
   return objeto
 }
 
-
-
 // EXERCÍCIO 10
 function segundoMaiorEMenor(array) {
-
+  const novoArray = []  
+  
+  // Objeto para armazenar o dois maiores e os menores números.
+  let numeros = {
+    primeiroMaior: -Infinity,
+    segundoMaior: -Infinity,
+    primeiroMenor: Infinity,
+    segundoMenor: Infinity
+  }
+  // Laço para definir o primeiro maior número.
+  for(i = 0; i < array.length; i++){
+    if(numeros.primeiroMaior < array[i]){
+      numeros.primeiroMaior = array[i]
+    }
+  }
+  // Laço para definir o segundo maior número.
+  for(i = 0; i < array.length; i++){
+    if(numeros.segundoMaior < array[i] && 
+      array[i] < numeros.primeiroMaior){
+      numeros.segundoMaior = array[i]
+    }
+  }  
+  // Laço para definir o primeiro menor número.
+  for(i = 0; i < array.length; i++){
+    if(numeros.primeiroMenor > array[i]){
+      numeros.primeiroMenor = array[i]
+    }
+  }
+  // Laço para definir o segundo maior número.
+  for(i = 0; i < array.length; i++){
+    if(numeros.segundoMenor > array[i] && array[i] > numeros.primeiroMenor){
+      numeros.segundoMenor = array[i]
+    }
+  }
+  // Push para dentro do novo array.
+  novoArray.push(numeros.segundoMaior, numeros.segundoMenor)
+  
+  return novoArray
 }
+
 
 // EXERCÍCIO 11
 function ordenaArray(array) {
