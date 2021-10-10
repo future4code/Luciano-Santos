@@ -162,6 +162,16 @@ function segundoMaiorEMenor(array) {
 // EXERCÍCIO 11
 function ordenaArray(array) {
 
+  for(let contador = 1; contador < array.length; contador++){
+    for(i = 0; i < array.length; i++){
+      if(array[i] > array[i + 1]){
+      let guardaValor = array[i]
+      array[i] = array[i + 1]
+      array[i + 1] = guardaValor                
+      }
+    }
+  }
+  return array
 }
 
 // EXERCÍCIO 12
