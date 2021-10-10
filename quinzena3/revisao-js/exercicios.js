@@ -223,7 +223,10 @@ function maioresDe18(arrayDePessoas) {
 
 // EXERCÍCIO 16B
 function menoresDe18(arrayDePessoas) {
-
+  let novoArray = arrayDePessoas.filter(item => {
+    return item.idade < 18
+  })
+  return novoArray
 }
 
 // EXERCÍCIO 17A
