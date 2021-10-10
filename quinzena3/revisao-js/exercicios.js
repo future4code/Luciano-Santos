@@ -188,7 +188,9 @@ function filmeFavorito() {
 
 // EXERCÍCIO 13
 function imprimeChamada() {
-  // "Venha assistir ao filme NOME_DO_FILME, de ANO, dirigido por DIRECAO e estrelado por ELENCO."
+  let copiaDescricaoFilmes = filmeFavorito()
+  
+  return `Venha assistir ao filme ${copiaDescricaoFilmes.nome}, de ${copiaDescricaoFilmes.ano}, dirigido por ${copiaDescricaoFilmes.diretor} e estrelado por ${copiaDescricaoFilmes.atores[0]}, ${copiaDescricaoFilmes.atores[1]}, ${copiaDescricaoFilmes.atores[2]}, ${copiaDescricaoFilmes.atores[3]}.`
 }
 
 // EXERCÍCIO 14
