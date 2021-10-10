@@ -258,7 +258,6 @@ function verificaParidade(array) {
 }
 
 // EXERCÍCIO 18A
-// A regra para entrar na montanha russa do terror é: ter, no mínimo, 1.5m de altura; ser mais velho do que 14 anos e mais novo do que 60 anos.
 function retornaPessoasAutorizadas(pessoas) {
   const novoArray = pessoas.filter(item =>{
     if(item.altura >= 1.5 &&
@@ -272,7 +271,14 @@ function retornaPessoasAutorizadas(pessoas) {
 
 // EXERCÍCIO 18B
 function retornaPessoasNaoAutorizadas(pessoas) {
-
+  const novoArray = pessoas.filter(item =>{
+    if(item.altura < 1.5 ||
+      item.idade <= 14 ||
+      item.idade >= 60){
+        return item
+      }
+  })
+  return novoArray
 }
 
 // EXERCÍCIO 19A
