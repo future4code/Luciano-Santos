@@ -239,7 +239,10 @@ function multiplicaArrayPor2(array) {
 
 // EXERCÍCIO 17B
 function multiplicaArrayPor2S(array) {
-
+  let novoArray = array.map(item =>{
+    return String(item * 2)
+  })
+  return novoArray 
 }
 
 // EXERCÍCIO 17C
