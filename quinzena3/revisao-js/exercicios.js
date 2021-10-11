@@ -283,14 +283,17 @@ function retornaPessoasNaoAutorizadas(pessoas) {
 
 // EXERCÍCIO 19A
 function ordenaPorNome(consultasNome) {
-
+  const novoArray = consultasNome.sort((a, b) =>{
+    return a.nome.localeCompare(b.nome)
+  })
+  return novoArray
 }
-
+ordenaPorNome()
 // EXERCÍCIO 19B
 function ordenaPorData(consultasData) {
-
+  console.log(consultasData[0].dataDaConsulta)
 }
-
+ordenaPorData()
 // EXERCÍCIO 20
 function calculaSaldo(contas) {
 
