@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#container-grid{
+    height: 100vh;
+    display: grid;
+    align-items:flex-end ;
+}
+
+section{
+    display: flex;
+    flex-direction:column;
+    height: 100vh;
+    width: 300px;
+    padding: 10px;
+    background-color: rgb(162, 162, 250);
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+p, h1{
+    border: 2px solid rgb(127, 127, 197) ;
+    border-radius: 10px 4px;
+    background-color:  rgb(127, 127, 197);
+    text-align: center;
+}
