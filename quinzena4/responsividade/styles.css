@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+/* Estilização cabeçalho */
+.cabecalho{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: coral;
+    height: 6em;
+    padding: 0 1em;
+}
+
+input{
+    border-style:initial;
+}
+
+/* Estilização conteúdo */
+.conteudo{
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    grid-gap: 2em;
+    margin: 1em;
+}
+
+.box-responsive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.componente{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    
+}
+.componente p{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.img-componente{
+    width: 100%;
+}
+
+/* Estilização rodapé */
+.rodape{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(36, 35, 35);
+    color: white;
+    height: 6em;
+    padding: 0 1em;
+}
+
+/* Estilização página do player */
+.pagina-player{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}   
+
+a{
+    text-decoration: none;
+    color: black
+}
+
+video {
+    width: 80%;
+    height: auto;
+}
+
+/* Ajustes de estilização mobile */
+@media screen and (min-device-width : 320px) and (max-device-width : 640px){
+    video {
+        width: 100%;
+        height: auto;
+    }
+    .conteudo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
