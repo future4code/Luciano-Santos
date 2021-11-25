@@ -10,7 +10,9 @@ const ContainerEtapa2 = Styled.div`
 const ContainerFormEtapa2 = Styled.form`
     display: flex;
     flex-direction: column;
+    align-self: center;
     text-align: center;
+    width: 200px;
 `
 
 export default class Etapa2 extends React.Component{
