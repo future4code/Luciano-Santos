@@ -6,6 +6,7 @@ const ContainerEtapa4 = Styled.div`
     flex-direction: column;
     align-self: center;
     margin-bottom: 1rem;
+    text-align: center;
 `
 
 export default class Etapa4 extends React.Component{

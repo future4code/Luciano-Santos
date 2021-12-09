@@ -15,18 +15,6 @@ export default class App extends React.Component{
   state = {
     pagina: 1
   }
-  
-
-  // irParaProximaPagina = () =>{
-  //   this.setState({pagina: this.state.pagina + 1})
-    
-  //   switch(this.state.pagina){
-  //     case 2:
-  //       proximaPagina = <Etapa2/>
-  //     break
-  //   }
-
-  // }
 
   render(){
     let proximaPagina = <Etapa1/>
@@ -45,13 +33,13 @@ export default class App extends React.Component{
         proximaPagina = <Etapa4/>
       break;
     }
-    
+        
     console.log(this.state.pagina)
 
     return(
       <ContainerPrincipal>
         {proximaPagina}
-        <button onClick = {irParaProximaPagina}>Próxima etapa</button>
+        {this.state.pagina !== 4 ? <button onClick = {irParaProximaPagina}>Próxima etapa</button> : null}
       </ContainerPrincipal>
     )
   }
