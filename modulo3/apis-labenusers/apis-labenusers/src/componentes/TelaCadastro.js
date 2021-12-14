@@ -32,6 +32,10 @@ const InputArea = styled.input`
 
 const ContainerUsuario = styled.ul`
     display: flex;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    width: 350px;
+    justify-content: space-between;
 `
 const BtnTrocaTela = styled.button`
     background: #2cbc63;
@@ -76,8 +80,9 @@ export default class TelaCadastro extends React.Component{
             }
         })
         .then(()=>{
-            alert(`Usuário ${this.state.valorInputNome} criado com sucesso!`)
-            this.pegarUsuario()       
+            alert(`Usuário(a) ${this.state.valorInputNome} criado com sucesso!`)
+            this.pegarUsuario()
+            this.setState({valorInputNome: "", valorInputEmail: ""})      
         })
         .catch((err)=>{
             console.log(err.response.data)
@@ -102,23 +107,27 @@ export default class TelaCadastro extends React.Component{
 
     // ========================== DELETAR USUÁRIO ==========================
     deletarUsuario = (id) =>{
-        axios
-        .delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, {
-            headers: {
-                Authorization: "luciano-ribeiro-joy"
-            }
-        })
-        .then(()=>{
-            const copiaUsuarios = [...this.state.usuarios]
-            const listaFiltrada = copiaUsuarios.filter((usuario)=>{
-                return usuario.id !== id
+        let confirm = window.confirm('Tem certeza de que deseja deletar?')
+        if(confirm){
+            axios
+            .delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, {
+                headers: {
+                    Authorization: "luciano-ribeiro-joy"
+                }
             })
-            alert('Usuário deletado com sucesso!')
-            this.setState({usuarios: listaFiltrada})
-        }).catch((err)=>{
-            alert('Erro ao deletar usuário!')
-            console.log(err.response.data)
-        })
+            .then(()=>{
+                // const copiaUsuarios = [...this.state.usuarios]
+                // const listaFiltrada = copiaUsuarios.filter((usuario)=>{
+                //     return usuario.id !== id
+                // })
+                this.pegarUsuario()
+                alert('Usuário(a) deletado(a) com sucesso!')
+                // this.setState({usuarios: listaFiltrada})
+            }).catch((err)=>{
+                alert('Erro ao deletar usuário(a)!')
+                console.log(err.response.data)
+            })
+        }
     }
 
     // ========================== ALTERAR ENTRE PÁGINAS ==========================
@@ -137,7 +146,7 @@ export default class TelaCadastro extends React.Component{
                     <li>{usuario.name}</li>
                     <Btn
                     funcao = {()=>this.deletarUsuario(usuario.id)}
-                    etiqueta ={<img src={BtnExcluir} alt={'Botão para excluir usuário.'}/>}
+                    etiqueta ={<img src={BtnExcluir} alt={'Botão para excluir usuário(a).'}/>}
                     />
                 </ContainerUsuario>
             )
@@ -162,7 +171,7 @@ export default class TelaCadastro extends React.Component{
                         />
                         <Btn
                             funcao = {this.criarNovoUsuario}
-                            etiqueta = {<img src={BtnNovoUsuario} alt={'Botão criar novo usuário.'}/>}
+                            etiqueta = {<img src={BtnNovoUsuario} alt={'Botão criar novo(a) usuário(a).'}/>}
                         />
                     </ContainerInput> : listaUsuarios}                      
                 </ContainerPrincipal>
