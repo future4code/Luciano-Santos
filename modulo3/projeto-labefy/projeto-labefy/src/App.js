@@ -1,25 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import styled from 'styled-components';
+import Home from './components/Home';
+import TelaCriarPlaylist from './components/TelaCriarPlaylist';
+import TelaListaPlaylist from './components/TelaListaPlaylist';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const ContainerPrincipal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export default class App extends React.Component{
+
+  state = {
+    estagio: "home"
+  }
+
+  trocarParaSuasPlaylists = () =>{
+    this.setState({estagio: "lista"})
+  }
+
+  trocarParaCriarPlaylist = () =>{
+    this.setState({estagio: "criar"})
+  }
+
+  trocarParaHome = () =>{
+    this.setState({estagio: "home"})
+  }
+
+  render(){
+
+    const estagio = this.state.estagio
+    let estagioAtual
+
+    switch (estagio) {
+      case 'home':
+        estagioAtual = 
+        <Home 
+        trocarParaSuasPlaylists={this.trocarParaSuasPlaylists}
+        trocarParaCriarPlaylist={this.trocarParaCriarPlaylist}
+        />
+        break;
+      case 'lista':
+        estagioAtual = 
+        <TelaListaPlaylist
+        trocarParaHome={this.trocarParaHome}
+        trocarParaCriarPlaylist={this.trocarParaCriarPlaylist}
+        />
+        break;
+      case 'criar':
+        estagioAtual = 
+        <TelaCriarPlaylist
+        trocarParaHome={this.trocarParaHome}
+        trocarParaSuasPlaylists={this.trocarParaSuasPlaylists}
+        />
+        break;    
+      default:
+        estagioAtual = <p>Página não encontrada!</p>
+        break;
+    }
+
+    return(
+      <ContainerPrincipal>       
+        {estagioAtual}
+      </ContainerPrincipal>
+    )
+  }
 }
-
-export default App;
