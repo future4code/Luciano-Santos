@@ -8,6 +8,7 @@ const ContainerCardPlaylist = styled.div`
     height: 200px;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: .2rem;
+    background-color: #0D0126;
 `
 const ContainerBtn = styled.div`
     display: flex;
@@ -25,7 +26,8 @@ const Btn = styled.button`
 const ContainerH1 = styled.div`
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start;    
+    color: white;
 `
 const H1 = styled.h1`
     display: flex;    
