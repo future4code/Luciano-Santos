@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Home from './components/Home';
-import TelaCriarPlaylist from './components/TelaCriarPlaylist';
-import TelaListaPlaylist from './components/TelaListaPlaylist';
+import Home from './components/home/Home';
+import TelaCriarPlaylist from './components/telaCriarPlaylist/TelaCriarPlaylist';
+import TelaDetalhes from './components/TelaDetalhes/TelaDetalhes';
+import TelaListaPlaylist from './components/telaListaPlaylist/TelaListaPlaylist';
 
 const ContainerPrincipal = styled.div`
   display: flex;
@@ -20,12 +21,20 @@ export default class App extends React.Component{
     this.setState({estagio: "lista"})
   }
 
+  trocarParaDetalhesPlaylist = () =>{
+    this.setState({estagio: "detalhes"})
+  }
+
   trocarParaCriarPlaylist = () =>{
     this.setState({estagio: "criar"})
   }
 
   trocarParaHome = () =>{
     this.setState({estagio: "home"})
+  }
+
+  trocaParaDetalhesDaPlaylist = () =>{
+    this.setState({estagio: "detalhes"})
   }
 
   render(){
@@ -46,6 +55,7 @@ export default class App extends React.Component{
         <TelaListaPlaylist
         trocarParaHome={this.trocarParaHome}
         trocarParaCriarPlaylist={this.trocarParaCriarPlaylist}
+        trocarParaDetalhesPlaylist={this.trocarParaDetalhesPlaylist}        
         />
         break;
       case 'criar':
@@ -54,7 +64,13 @@ export default class App extends React.Component{
         trocarParaHome={this.trocarParaHome}
         trocarParaSuasPlaylists={this.trocarParaSuasPlaylists}
         />
-        break;    
+        break;
+      case 'detalhes':
+        estagioAtual = 
+        <TelaDetalhes
+        trocarParaSuasPlaylists={this.trocarParaSuasPlaylists}
+        />
+        break;   
       default:
         estagioAtual = <p>Página não encontrada!</p>
         break;

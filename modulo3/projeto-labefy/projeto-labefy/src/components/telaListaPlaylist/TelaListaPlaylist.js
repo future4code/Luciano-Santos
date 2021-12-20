@@ -1,68 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
-import { CardPlaylist } from './CardPlaylist';
-import iconeBtnExcluir from '../img/Btn-X.svg'
-import iconeBtnHome from '../img/Btn-home.svg'
-import iconeBtnAdd from '../img/Btn-add.svg'
-
-const ContainerMain = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 700px;
-    height: 100vh;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-`
-const ContainerLista = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
-`
-const ContainerBtn = styled.div`
-    display: flex;
-    align-items: center;
-`
-const BtnHome = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 0 .2rem;
-    height: 3rem;
-    width: 215px;
-    background-color: #F20530;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: .2rem;
-    border: none;
-    cursor: pointer;
-`
-const BtnAdd = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 0 .2rem;
-    height: 3rem;
-    width: 215px;
-    background-color: #F29849;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: .2rem;
-    border: none;
-    cursor: pointer;
-`
-const Img = styled.img`
-    fill: white;
-`
-
+import iconeBtnExcluir from '../../img/Btn-X.png';
+import iconeBtnDetalhes from '../../img/Btn-details.png';
+import iconeBtnHome from '../../img/Btn-home.svg';
+import iconeBtnAdd from '../../img/Btn-add.svg';
+import iconeAddMusica from '../../img/Btn-add-music.png'
+import CardPlaylist from '../CardPlaylist/CardPlaylist';
+import { ContainerMain } from './Styled';
+import { ContainerLista } from './Styled';
+import { ContainerBtn } from './Styled';
+import { BtnHome } from './Styled';
+import { BtnAdd } from './Styled';
+import TelaDetalhes from '../TelaDetalhes/TelaDetalhes';
 
 export default class TelaListaPlaylist extends React.Component{
 
     state = {
-        playlists:[]
+        playlists:[],
+        estagio: 'lista'
     }
 
     componentDidMount(){
@@ -103,14 +58,36 @@ export default class TelaListaPlaylist extends React.Component{
         }
     }
 
-    render(){
+    // PegarDetalhes = (playlistId) =>{
+    //     axios
+    //     .get(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`,{
+    //         headers:{
+    //             Authorization: 'luciano-ribeiro-joy'
+    //         }
+    //     })
+    //     .then((res)=>{            
+    //         this.setState({detalhes: res.data.result.tracks,
+    //         estagio: 'detalhes'})
+    //         console.log(res.data)
+    //     })
+    //     .catch((err)=>{
+    //         console.log(err.response.data.message)
+    //     })
+    // }
 
+
+
+    render(){
         const listaPlaylist = this.state.playlists.map(playlist =>{
             return(
-                <CardPlaylist                   
+                <CardPlaylist
+                key={playlist.id}                   
                 name={playlist.name}
-                funcao={()=>this.deletarPlaylist(playlist.id)}
-                etiqueta={<Img src={iconeBtnExcluir} alt={'Botão para excluir playlist.'}/>}
+                trocarParaSuasPlaylists={this.props.trocarParaSuasPlaylists}                
+                trocarParaDetalhesPlaylist={this.props.trocarParaDetalhesPlaylist}
+                iconeDetalhes={<img src={iconeBtnDetalhes} alt={'Botão exibir detalhes da playlist.'}/>}
+                funcaoExcluir={()=>this.deletarPlaylist(playlist.id)}
+                iconeExcluir={<img src={iconeBtnExcluir} alt={'Botão para excluir playlist.'}/>}
                 />
             )
         })
@@ -125,6 +102,8 @@ export default class TelaListaPlaylist extends React.Component{
                 <ContainerLista>
                     {listaPlaylist}
                 </ContainerLista>
+                {console.log(this.state.playlists)} 
+
             </ContainerMain>
         )
     }

@@ -33,18 +33,22 @@ const H1 = styled.h1`
     display: flex;    
 `
 
-export function CardPlaylist(props){
-    return(
-        <ContainerCardPlaylist>
-            
-            <ContainerBtn>
-                <Btn onClick={props.funcao}>{props.etiqueta}</Btn>
-            </ContainerBtn>
-
-            <ContainerH1>
-                <H1>{props.name}</H1>
-            </ContainerH1>
-
-        </ContainerCardPlaylist>
-    )
+export default class CardPlaylist extends React.Component{
+    render(){
+        return(
+            <ContainerCardPlaylist>
+                
+                <ContainerBtn>
+                    <Btn onClick={this.props.funcaoAddMusica}>{this.props.iconeAddMusica}</Btn>
+                    <Btn onClick={this.props.trocarParaDetalhesPlaylist}>{this.props.iconeDetalhes}</Btn>
+                    <Btn onClick={this.props.funcaoExcluir}>{this.props.iconeExcluir}</Btn>
+                </ContainerBtn>
+    
+                <ContainerH1>
+                    <H1>{this.props.name}</H1>
+                </ContainerH1>
+    
+            </ContainerCardPlaylist>
+        )
+    }
 }
