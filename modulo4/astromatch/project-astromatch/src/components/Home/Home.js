@@ -1,47 +1,101 @@
 import React,{useEffect, useState} from "react";
-import axios from "axios";
-import {ContainerMain, ContainerHeader, ContainerBody, ContainerFooter, BtnUsers} from "./Styled";
-import IconListUsers from "../../img/bxs-user-detail.svg";
+import * as actions from "../../constants/actions"
+import {Container, ContainerMain, ContainerHeader, ContainerBody, 
+    ContainerFooter, ContainerButtons, ContainerPhoto, ContainerText, 
+    ContainerBtnClear, H1} from "./Styled";
+import Button from '@material-ui/core/Button';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import { green, red, deepPurple } from '@material-ui/core/colors';
 
 function Home(props){
 
     const [profile, setProfile] = useState({});
+    const [keyRender, setKeyRender] = useState(false)
 
-    const getProfileToChoose = () =>{
-        const URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/luciano/person"
-        
-        axios
-        .get(URL)
+    // Função escolha positiva(Dar match).
+    const choosePersonToAdd = (choice="choose-person") =>{
+        actions.request.post(`choose-person?q=${choice}`, {
+            id: profile.id,
+            choice: true
+        })
         .then((res)=>{
-            setProfile(res.data.profile)
+            setKeyRender(!keyRender)
         })
         .catch((err)=>{
-            console.log(err)
-        })     
+            console.log(err.response)
+        })
     }
-
+    // Função escolha negativa(Descartar).
+    const choosePersonToDelete = (choice="choose-person") =>{
+        actions.request.post(`choose-person?q=${choice}`, {
+            id: profile.id,
+            choice: false
+        })
+        .then((res)=>{
+            setKeyRender(!keyRender)
+        })
+        .catch((err)=>{
+            console.log(err.response)
+        })
+    }
+    // Função limpar swipes e matches.
+    const clear = (clear) =>{
+        actions.request.put(`clear?q=${clear}`)
+        .then((res)=>{
+            setKeyRender(!keyRender)
+        })
+        .catch((err)=>{
+          console.log(err.response)
+        })
+    }
+    
+    // Função para pegar um perfil para escolher é declarada dentro da pasta 'constants' e invocada
+    // diretamente dentro do useEffect. 
     useEffect(()=>{
-        getProfileToChoose()
-    },[])
-
+        actions.getProfileToChoose().then(profile => setProfile(profile))
+    },[keyRender])
+    
     return(
-        <ContainerMain>
-            <ContainerHeader>
-                <h1>ASTROMATCH</h1>
-                <BtnUsers onClick={props.functionRender}>
-                    <img src={IconListUsers} alt={"iconer list of added users"}/>
-                </BtnUsers>
-            </ContainerHeader>
-            <ContainerBody>
-                <img src={profile.photo} alt={"test"}/>
-                <h3>{profile.name},</h3>{profile.age}
-                <p>{profile.bio}</p>
-            </ContainerBody>
-            <ContainerFooter>
-                <button>X</button>
-                <button>+</button>
-            </ContainerFooter>
-        </ContainerMain>
+        <Container>
+            <ContainerMain>
+                <ContainerHeader>
+                    <H1>ASTROMATCH</H1>
+                    <Button onClick={props.functionRender} alt={"button to go profile list."}
+                    style={{ background: "none" }}>
+                        <PlaylistAddCheckIcon style={{ fontSize: 40, color: deepPurple[500] }}/>
+                    </Button>
+                </ContainerHeader>
+                <ContainerBody>
+                    <ContainerPhoto url={profile?.photo}>
+                        <ContainerText>
+                            <div>
+                                <h3>{profile?.name}, {profile?.age}</h3>                               
+                            </div>
+                            <div>{profile?.bio}</div>   
+                        </ContainerText>
+                    </ContainerPhoto>
+                </ContainerBody>
+                <ContainerFooter>
+                    <ContainerButtons>
+                        <Button 
+                            onClick={choosePersonToDelete}
+                            color={"primary"}>
+                            <ClearOutlinedIcon style={{ color: red[600], fontSize: 50 }}/>
+                        </Button>
+                        <Button 
+                            onClick={choosePersonToAdd} 
+                            color={"secondary"}>
+                            <FavoriteIcon style={{ color: green[600], fontSize: 50 }}/>
+                        </Button>                    
+                    </ContainerButtons>
+                </ContainerFooter>
+            </ContainerMain>
+            <ContainerBtnClear>
+                <Button onClick={clear} alt={"button to clear swipes and matches."} variant="outlined" color="primary" style={{width: 400 }}>Limpar swipes e matches</Button>
+            </ContainerBtnClear>
+        </Container>
     )
 }
 
