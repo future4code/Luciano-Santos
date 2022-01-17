@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+<h1 align="center"> <a href='https://private-root.surge.sh/'>👨‍🚀 Astromatch :rocket:</a></h1>
+<p align="center">Aplicação para criar uma rede de perfis que combinam com o usuário, construída a partir da API Astromatch, inspirada na função do aplicativo Tinder.</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### :iphone: Funcionalidades
 
-## Available Scripts
+- [x] Dar match em um perfil.
+- [x] Descartar um perfil que não combinar.
+- [x] Visualizar lista de perfis escolhidos.
+- [x] Resetar swipes e lista de matches.
 
-In the project directory, you can run:
+### :wrench: Tecnologias
+<p>Ferramentas utilizadas:</p>
 
-### `npm start`
+- [React](https://pt-br.reactjs.org/)
+- [Javascript](https://www.javascript.com/)
+- [Material-Ui](https://v4.mui.com/pt/)
+- [Styled-components](https://styled-components.com/)
+- [Axios](https://axios-http.com/docs/intro)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### :white_check_mark: O que funciona
+- [x] **Requisições API Astromatch:** 
+- Get Profile To Choose (Pegar um perfil para escolher)
+- Get Matches (Pegar lista de matches)
+- Choose Person (Escolher ou descartar perfil)
+- Clear (Limpar lista de matches e swipes) 
+- [x] Renderização condicional de páginas.
+- [x] Utilização Design system:  Material-UI.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### :x: O que não funciona
+- [ ] Renderizar algo na tela enquanto busca informações na API ou quando não há mais perfis para escolher.
 
-### `npm test`
+### Demonstração (Link Surge) 
+[Site Astromatch](https://private-root.surge.sh/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Layout (Imagens)
+![image](https://user-images.githubusercontent.com/89327618/149681603-7a5ec494-716d-4eeb-b68f-47fe26e8b5a9.png)
 
-### `npm run build`
+<h3 align="center"> 
+	🚧 Em construção...  🚧
+</h3>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
