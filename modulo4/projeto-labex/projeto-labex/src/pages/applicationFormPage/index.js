@@ -5,7 +5,7 @@ import {base_URL} from "../../constants/urls";
 import {Container, Form, ContainerForm, ContainerButtons} from "./styles";
 import { CountryDropdown } from 'react-country-region-selector';
 import MenuHeader from "../../components/menuHeader";
-import { Input } from '@chakra-ui/react';
+import Button from "../../components/button/index";
 
 export default function ApplicationFormPage(){
     
@@ -17,7 +17,7 @@ export default function ApplicationFormPage(){
     const [choice, setChoice] = useState("");
 
     const trips = useRequestGet(`${base_URL}/trips`, [])
-    
+
     const onChangeName = ({target}) =>{
         setname(target.value)
     }
@@ -57,9 +57,9 @@ export default function ApplicationFormPage(){
     return(
         <Container>
             <MenuHeader
-                item1={"HOME"}
-                item2={"SOBRE"}
-                item3={"CONTATO"}
+                item1={"Home"}
+                item2={"Sobre"}
+                item3={"Contato"}
             />
             <ContainerForm>
             <h1>Inscreva-se para uma viagem</h1>
@@ -75,30 +75,26 @@ export default function ApplicationFormPage(){
                                 )
                             )}
                     </select>
-                    <Input
+                    <input
                         value={name}
                         onChange={onChangeName}
                         placeholder={"Nome"}
-                        variant='outline'
                     />
-                    <Input
+                    <input
                         value={age}
                         onChange={onChangeAge}
                         placeholder={"Idade"}
                         type={"number"}
-                        variant='outline'
                     />
-                    <Input
+                    <input
                         value={applicationText}
                         onChange={onChangeApplicationText}
                         placeholder={"Texto de candidatura"}
-                        variant='outline'
                     />
-                    <Input
+                    <input
                         value={profession}
                         onChange={onChangeProfession}
                         placeholder={"Profissão"}
-                        variant='outline'
                     />
                     <CountryDropdown
                         defaultOptionLabel="Escolha um País"
@@ -107,8 +103,13 @@ export default function ApplicationFormPage(){
                     />
                 </Form>
                 <ContainerButtons>
-                    <button variant="contained">Voltar</button>
-                    <button variant="contained" onClick={()=> applyToTrip(choice)}>Enviar</button>
+                    <Button 
+                        onClick={()=> applyToTrip(choice)}
+                        color={"#2cbc63"}
+                        text="Enviar"
+                        width={"10rem"}
+                        height={"4rem"}
+                    />
                 </ContainerButtons>
             </ContainerForm>
         </Container>

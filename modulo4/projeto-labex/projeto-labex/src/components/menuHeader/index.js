@@ -1,14 +1,14 @@
-import {Container, ContainerMenu} from "./styles"
+import {Container, Ul, Li} from "./styles";
 
 export default function MenuHeader(props){
     return(
         <Container>
             <h1>LabeX</h1>
-            <ContainerMenu>
-                <ul>{props.item1}</ul>
-                <ul>{props.item2}</ul>
-                <ul>{props.item3}</ul>
-            </ContainerMenu>
+            <Ul>
+                {props.item1 ? <Li onClick={props.function1}>{props.item1}</Li> : null}
+                {props.item2 ? <Li onClick={props.function2}>{props.item2}</Li> : null}
+                {props.item3 ? <Li onClick={props.function2}>{props.item3}</Li> : null}
+            </Ul>
         </Container>
     )
 }

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+`
 export const ContainerMain = styled.div`
     display: flex;
     justify-content: center;
@@ -7,9 +9,8 @@ export const ContainerMain = styled.div`
     margin: 1vh 0 1vh 0;
 `
 export const ContainerDescription = styled.div`
-    height: 90vh;
+    height: 80vh;
     width: 30vw;
-    border: solid 1px black;
 `
 export const ContainerSubmenu = styled.div`
     display: flex;
@@ -17,7 +18,6 @@ export const ContainerSubmenu = styled.div`
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    height: 90vh;
+    height: 80vh;
     width: 30vw;
-    border: solid 1px black;
 `

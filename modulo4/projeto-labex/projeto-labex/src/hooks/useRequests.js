@@ -12,13 +12,3 @@ export const useRequestGet = (url, stageZero) =>{
 
     return data;
 }
-
-// export const useRequestPost = (url, body, headers, stageZero) =>{
-//     const [data, setData] = useState(stageZero)
-
-//     useEffect(()=>{
-//         services.request.post(url, body, headers)
-//         .then(res => setData(res.data))
-//         .catch(err => console.log(err.response.data))
-//     },[url])
-// }

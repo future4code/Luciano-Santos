@@ -3,11 +3,14 @@ import * as services from "../../services/apiRequestAxios";
 import { base_URL } from "../../constants/urls";
 import MenuHeader from "../../components/menuHeader";
 import {Container, Form, ContainerForm, ContainerButtons} from "./styles";
+import { useHistory } from "react-router-dom";
+import Button from "../../components/button/index";
 
 export default function LoginPage(){
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory()
 
     const onChangeEmail = ({target}) =>{
         setEmail(target.value)
@@ -22,18 +25,20 @@ export default function LoginPage(){
             email,
             password
         })
-        .then(({data}) => localStorage.setItem("token", data.token))
+        .then(({data}) => localStorage.setItem("token", data.token),
+            goToAdminPage()
+        )
         .catch(err => console.log(err.response.data))
+    }
+
+    const goToAdminPage = () =>{
+        history.replace("/admin")
     }
 
 
     return(
         <Container>
-            <MenuHeader
-                item1={"HOME"}
-                item2={"SOBRE"}
-                item3={"CONTATO"}
-            />
+            <MenuHeader/>
             <ContainerForm>
                 <h1>Login</h1>
                 <Form>
@@ -42,17 +47,24 @@ export default function LoginPage(){
                         value={email}
                         onChange={onChangeEmail}
                         type={"email"}
+                        pattern=".+@globex\.com" 
+                        required
                     />
                     <input
                         placeholder="Senha"
                         value={password}
                         onChange={onChangePassword}
-                        type={"password"}
+                        type={"password"}                        
                     />
                 </Form>
                 <ContainerButtons>
-                    <button>Voltar</button>
-                    <button onClick={login}>Entrar</button>
+                    <Button 
+                    onClick={login}
+                    color={"#2cbc63"}
+                    text="Entrar"
+                    width={"10rem"}
+                    height={"4rem"}
+                />
                 </ContainerButtons>
             </ContainerForm>
         </Container>
