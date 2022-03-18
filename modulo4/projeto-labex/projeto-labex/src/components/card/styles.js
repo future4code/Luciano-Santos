@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const ContainerMain = styled.div`
     background: #242625;
-    width: 20vw;
-    height: auto;
+    width: 300px;
+    height: 400px;
     border-radius: 10px;
+    margin: 0 2rem 2rem 2rem;
 `
 
 export const ContainerContents = styled.div`
@@ -23,7 +24,7 @@ export const ContainerContents = styled.div`
     font-family: roboto;
 
     :hover{
-      margin-top:-.5em;
+        transform: translateY(-1em)
     }
 `
 export const Header = styled.div`

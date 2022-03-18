@@ -20,7 +20,9 @@ export default function LoginPage(){
         setPassword(target.value)
     }
 
-    const login = () =>{
+    const login = (e) =>{
+        e.preventDefault()
+
         services.request.post(`${base_URL}/login`,{
             email,
             password
@@ -41,31 +43,29 @@ export default function LoginPage(){
             <MenuHeader/>
             <ContainerForm>
                 <h1>Login</h1>
-                <Form>
+                <Form onSubmit={login}>
                     <input
                         placeholder="Email"
                         value={email}
                         onChange={onChangeEmail}
                         type={"email"}
-                        pattern=".+@globex\.com" 
                         required
+                        autoFocus
                     />
                     <input
                         placeholder="Senha"
                         value={password}
                         onChange={onChangePassword}
-                        type={"password"}                        
+                        type={"password"}
+                        required                       
+                    />
+                    <Button
+                        color={"#2cbc63"}
+                        text="Entrar"
+                        width={"10rem"}
+                        height={"4rem"}
                     />
                 </Form>
-                <ContainerButtons>
-                    <Button 
-                    onClick={login}
-                    color={"#2cbc63"}
-                    text="Entrar"
-                    width={"10rem"}
-                    height={"4rem"}
-                />
-                </ContainerButtons>
             </ContainerForm>
         </Container>
     )

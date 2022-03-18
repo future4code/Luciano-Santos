@@ -20,7 +20,7 @@ export default createGlobalStyle`
     }
 
     input{
-        height: 2rem;
+        height: 3rem;
     }
     select{
         height: 2.5rem;

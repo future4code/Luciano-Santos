@@ -18,7 +18,12 @@ export const ContainerForm = styled.div`
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 400px;
     margin: 1rem;
     gap: 1rem;
+
+    input{
+        width: 100%;
+    }
 `
