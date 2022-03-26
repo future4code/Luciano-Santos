@@ -10,7 +10,8 @@
     "exercicio3": "clear && tsc && node ./build/exercicio3.js",
     "exercicio4": "clear && tsc && node ./build/exercicio4.js",
     "exercicio5": "clear && tsc && node ./build/exercicio5.js",
-    "exercicio6": "clear && tsc && node ./build/exercicio6.js"
+    "exercicio6": "clear && tsc && node ./build/exercicio6.js",
+    "exercicio7": "clear && tsc && node ./build/exercicio7.js"
   },
   "keywords": [],
   "author": "",
