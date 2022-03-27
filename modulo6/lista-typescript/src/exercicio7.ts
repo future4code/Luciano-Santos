@@ -1,7 +1,7 @@
 type produtos = {
     nome: string,
     quantidade: number,
-    valorUnitario: any
+    valorUnitario: number | string
 };
 
 
@@ -23,7 +23,7 @@ const ajustaPreco = (preco: number): string => {
 const ordernarListaDeProdutos = (produtos: produtos[]): produtos[] =>{
     const novaLista: produtos[] = produtos
     .map(produto => {
-        const valorUnitario: string = ajustaPreco(produto.valorUnitario);
+        const valorUnitario: string = ajustaPreco(produto.valorUnitario as number);
         const lista: produtos = {...produto, valorUnitario: valorUnitario};
         return lista;
     })

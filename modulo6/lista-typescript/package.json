@@ -11,12 +11,14 @@
     "exercicio4": "clear && tsc && node ./build/exercicio4.js",
     "exercicio5": "clear && tsc && node ./build/exercicio5.js",
     "exercicio6": "clear && tsc && node ./build/exercicio6.js",
-    "exercicio7": "clear && tsc && node ./build/exercicio7.js"
+    "exercicio7": "clear && tsc && node ./build/exercicio7.js",
+    "exercicio8": "clear && tsc && node ./build/exercicio8.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "process.argv": "^0.6.0",
     "typescript": "^4.6.3"
   }
 }
