@@ -1,0 +1,35 @@
+type romanNumerals = {
+    letra : string,
+    valor : number
+};
+
+const romanNumerals: romanNumerals[] = [
+    {letra: "M", valor: 1000},
+    {letra: "CM", valor: 900},
+    {letra: "D", valor: 500},
+    {letra: "CD", valor: 400},
+    {letra: "C", valor: 100},
+    {letra: "XC", valor: 90},
+    {letra: "L", valor: 50},
+    {letra: "XL", valor: 40},
+    {letra: "C", valor: 10},
+    {letra: "IX", valor: 9},
+    {letra: "V", valor: 5},
+    {letra: "IV", valor: 4},
+    {letra: "I", valor: 1}
+];
+
+const convertToRomanNumerals = (numberChoice: number): string =>{
+    let number: number = numberChoice;
+    let numerals: string = "";
+
+    for(let i: number = 0; i < romanNumerals.length; i++){
+        if(number >= romanNumerals[i].valor){
+            number -= romanNumerals[i].valor;
+            numerals += romanNumerals[i].letra;
+        };
+    };
+    return numerals;
+};
+
+console.log(convertToRomanNumerals(1990))
