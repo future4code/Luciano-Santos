@@ -1,0 +1,12 @@
+###
+POST http://localhost:3003/account
+content-Type: application/json
+
+{
+    "name": "Pedro",
+    "CPF": "415.966.466-00",
+    "birthdate": "05/11/2000"
+}
+
+###
+GET http://localhost:3003/account
