@@ -1,4 +1,4 @@
-type extracted = {
+export type extracted = {
     value: number,
     date: Date,
     description: string
