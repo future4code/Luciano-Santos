@@ -25,9 +25,9 @@ POST http://localhost:3003/account/extracted?CPF=550.119.300-00
 Content-Type: application/json
 
 {
-    "value": 150,
-    "date": "10/04/2022",
-    "description": "Energia"
+    "value": 500,
+    "date": "12/04/2022",
+    "description": "Faculdade"
 }
 // ========================================== PEGAR SALDO ==========================================
 ###

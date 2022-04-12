@@ -226,21 +226,21 @@ app.put("/account/balance", (req: Request, res: Response) =>{
         const debtsToday = accounts[exists].extracted.filter(debit => 
             new Date(debit.date).getTime() === new Date(currentDate).getTime()
         ).map(debit => debit.value);
-
-        // const totalDebts = debtsToday.reduce((acc, item) => acc + item.value, 0);
         
-        // for(let i = debtsToday.length; i >= 0; i--){
-        // }
-        for(let i = 0; i <= debtsToday.length - 1; i++ ){
-            accounts[exists] = {
-                ...accounts[exists],
-                balance: accounts[exists].balance - debtsToday[i]
-            };
-        }
+        const futureDebts = accounts[exists].extracted.filter(debit => 
+            new Date(debit.date).getTime() !== new Date(currentDate).getTime()
+        );
 
-        console.log(debtsToday.length)
-        // console.log(totalDebts)
-        res.status(200).send(`Saldo atualizado R$${accounts[exists].balance}`)        
+        if(accounts[exists].balance){
+            for(let i = 0; i < debtsToday.length; i++ ){
+                accounts[exists] = {
+                    ...accounts[exists],
+                    balance: accounts[exists].balance - debtsToday[i],
+                    extracted: futureDebts
+                };
+            };
+        };
+        res.status(200).send(`Saldo atualizado R$${accounts[exists].balance}`);        
     } catch(error: any){
         switch(error.message){
             case errors.UNPROCESSABLE_ENTITY.message:
