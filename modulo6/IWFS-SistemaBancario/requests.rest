@@ -1,0 +1,41 @@
+
+// =========================================== CRIAR CONTA =========================================
+###
+POST http://localhost:3003/account
+content-Type: application/json
+
+{
+    "name": "Maria",
+    "CPF": "550.119.300-00",
+    "birthdate": "01/01/1986"
+}
+// ========================================= ADICIONAR SALDO =======================================
+###
+PATCH http://localhost:3003/account
+Content-Type: application/json
+
+{
+    "name": "Maria",
+    "CPF": "550.119.300-00",
+    "value": 3000
+}
+// ========================================== AGENDAR PAGAMENTO ====================================
+###
+POST http://localhost:3003/account/extracted?CPF=550.119.300-00
+Content-Type: application/json
+
+{
+    "value": 500,
+    "date": "12/04/2022",
+    "description": "Faculdade"
+}
+// ========================================== PEGAR SALDO ==========================================
+###
+GET http://localhost:3003/account/balance?name=Maria&CPF=550.119.300-00
+// ======================================== ATUALIZAR SALDO =========================================
+###
+PUT http://localhost:3003/account/balance?CPF=550.119.300-00
+
+// ==================================== BUSCAR TODOS OS CLIENTES ==================================
+###
+GET http://localhost:3003/account
