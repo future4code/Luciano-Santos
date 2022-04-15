@@ -1,0 +1,1 @@
+// As descrições do arquivo tsconfig são padrões.
