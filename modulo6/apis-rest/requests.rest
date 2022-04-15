@@ -1,0 +1,21 @@
+###
+GET http://localhost:3003/test 
+
+###
+GET http://localhost:3003/users
+
+// a. Qual método HTTP você deve utilizar para isso?
+// R: Médoto GET.
+// b. Como você indicaria a entidade que está sendo manipulada?
+// R: Entidade 'Users'.
+
+###
+GET http://localhost:3003/users/types?type=NORMAL
+
+// a. Como você passou os parâmetros de type para a requisição? Por quê?
+// R: Através do query params, por que pode haver ou não um tipo.
+// b. Você consegue pensar em um jeito de garantir que apenas `types` válidos sejam utilizados?
+// R: Verificando se o type é uma string que contem, "ADMIN" ou "NORMAL".
+
+###
+GET http://localhost:3003/users/name?name="Bob"
