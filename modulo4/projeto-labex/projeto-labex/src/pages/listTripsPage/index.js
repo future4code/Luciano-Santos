@@ -2,18 +2,14 @@ import { useRequestGet } from "../../hooks/useRequests";
 import {base_URL} from "../../constants/urls";
 import MenuHeader from "../../components/menuHeader";
 import Card from "../../components/card/index";
-import {useHistory} from "react-router-dom";
 import {Header} from "./styles";
 import { Container, ContainerTrips, Trips, H1 } from "./styles";
 import Button from "../../components/button/index";
+import { useNavigate } from "react-router-dom";
 
 export default function ListTripPage(){
-    const trips = useRequestGet(`${base_URL}/trips`, [])
-    const history = useHistory()
-    
-    const goToSignUpForTrip = () =>{
-        history.push("/form/application")
-    }
+    const trips = useRequestGet(`${base_URL}/trips`, []);
+    const navigate = useNavigate();
     
     return(
         <Container>
@@ -25,12 +21,12 @@ export default function ListTripPage(){
             <ContainerTrips>
                 <Header>
                     <H1>Lista de viagens</H1>
-                    <Button 
-                    onClick={goToSignUpForTrip}
-                    color={"#2cbc63"}
-                    text="Inscrever-se"
-                    width={"10rem"}
-                    height={"4rem"}
+                    <Button
+                        onClick={() => navigate("/trips/application")}
+                        color={"#2cbc63"}
+                        text="Inscrever-se"
+                        width={"10rem"}
+                        height={"4rem"}
                     />
                 </Header>
                 <Trips>
@@ -49,9 +45,8 @@ export default function ListTripPage(){
                             deleteTrip={""}
                         />
                     )}
-                </Trips>
- 
+                </Trips> 
             </ContainerTrips>
         </Container>
-    )
-}
+    );
+};

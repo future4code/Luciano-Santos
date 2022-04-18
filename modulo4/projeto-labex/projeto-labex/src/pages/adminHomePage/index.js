@@ -3,26 +3,18 @@ import * as services from "../../services/apiRequestAxios";
 import { base_URL } from "../../constants/urls";
 import MenuHeader from "../../components/menuHeader/index";
 import TripCard from "../../components/tripCard";
-import {useHistory} from "react-router-dom";
-import {Container, ContainerMain, ContainerButtons, Trips} from "./styles";
+import {Container, ContainerMain, Trips} from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminHomePage(){
     
-    const [trips, setTrips] = useState([])
-    const history = useHistory()
+    const [trips, setTrips] = useState([]);
+    const navigate = useNavigate();
 
     const getTrips = () =>{
         services.request.get(`${base_URL}/trips`)
         .then(res => setTrips(res.data.trips))
         .catch()
-    }
-
-    const goToDetailsTrip = (id) =>{
-        history.push(`/trip/details/${id}`)
-    }
-
-    const goToTripCreate = () =>{
-        history.push("/trip/create")
     }
 
     const deleteTrip = (id) =>{
@@ -36,9 +28,13 @@ export default function AdminHomePage(){
     }
 
     const logout = () =>{
-        localStorage.removeItem("token")
-        history.push("/login")
-    }
+        localStorage.removeItem("token");
+        navigate("/login");       
+    };
+
+    const goToDetailsTrip = (id) =>{
+        navigate(`/admin/trips/${id}`)
+    };
     
     useEffect(()=>{
       getTrips()  
@@ -48,10 +44,8 @@ export default function AdminHomePage(){
         <Container>
             <MenuHeader
                 item1={"Criar Viagem"}
-                function1={goToTripCreate}
                 item2={"Logout"}
                 function2={logout}
-
             />
             <ContainerMain>
                 <h1>Painel administrativo</h1>

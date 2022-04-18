@@ -1,72 +1,82 @@
-import {useState} from "react";
 import * as services from "../../services/apiRequestAxios";
 import { base_URL } from "../../constants/urls";
 import MenuHeader from "../../components/menuHeader";
-import {Container, Form, ContainerForm, ContainerButtons} from "./styles";
-import { useHistory } from "react-router-dom";
+import { Container, Form, ContainerForm, ContainerButtons } from "./styles";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/index";
+import useForm from "../../hooks/useForm";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState } from "react";
 
 export default function LoginPage(){
-
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const history = useHistory()
-
-    const onChangeEmail = ({target}) =>{
-        setEmail(target.value)
-    }
+    const [loading, setLoading] = useState(false);
+    const { form, onChange } = useForm({
+        email: "",
+        password: ""
+    });
     
-    const onChangePassword = ({target}) =>{
-        setPassword(target.value)
-    }
+    const navigate = useNavigate();
 
-    const login = () =>{
-        services.request.post(`${base_URL}/login`,{
+    useEffect(() =>{
+        if (!loading && localStorage.getItem("token") !== null) {
+            navigate("/admin/trips/list");
+        };
+    },[loading, navigate]);
+
+    const login = (e) =>{
+        e.preventDefault();
+        setLoading(true);
+        
+        const {email, password} = form;
+        const body = {
             email,
             password
+        };
+
+        services.request.post(`${base_URL}/login`, body)
+        .then(({ data }) => {
+            localStorage.setItem("token", data.token)
+            navigate("/admin/trips/list", {replace: false})
         })
-        .then(({data}) => localStorage.setItem("token", data.token),
-            goToAdminPage()
-        )
-        .catch(err => console.log(err.response.data))
-    }
-
-    const goToAdminPage = () =>{
-        history.replace("/admin")
-    }
-
+        .catch(err => toast.error(err.response.data.message));
+    };
 
     return(
         <Container>
+            <ToastContainer theme={"colored"}/>
             <MenuHeader/>
             <ContainerForm>
-                <h1>Login</h1>
-                <Form>
+                <h1>Login</h1>                
+                <Form onSubmit={login}>
                     <input
-                        placeholder="Email"
-                        value={email}
-                        onChange={onChangeEmail}
+                        name="email"
+                        placeholder="Email*"
+                        value={form.email}
+                        onChange={onChange}
                         type={"email"}
-                        pattern=".+@globex\.com" 
+                        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" 
                         required
                     />
                     <input
-                        placeholder="Senha"
-                        value={password}
-                        onChange={onChangePassword}
-                        type={"password"}                        
+                        name="password"
+                        placeholder="Senha*"
+                        value={form.password}
+                        onChange={onChange}
+                        type={"password"}
+                        pattern="^.{6,}" 
+                        required                       
                     />
-                </Form>
-                <ContainerButtons>
-                    <Button 
-                    onClick={login}
-                    color={"#2cbc63"}
-                    text="Entrar"
-                    width={"10rem"}
-                    height={"4rem"}
-                />
-                </ContainerButtons>
-            </ContainerForm>
+                    <ContainerButtons>
+                        <Button
+                            color={"#2cbc63"}
+                            text="Entrar"
+                            width={"10rem"}
+                            height={"4rem"}
+                        />                    
+                    </ContainerButtons>             
+                </Form>            
+            </ContainerForm> 
         </Container>
-    )
-}
+    );
+};

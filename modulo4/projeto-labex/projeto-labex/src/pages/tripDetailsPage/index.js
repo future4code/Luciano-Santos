@@ -6,6 +6,7 @@ import MenuHeader from "../../components/menuHeader/index";
 import Card from "../../components/card/index";
 import {Container, Candidates, ContainerDescriptionTrip,
 ContainerCandidates, ContainerApproved, Description, Header, Approved} from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export default function TripDetailsPage(){
 
@@ -17,6 +18,8 @@ export default function TripDetailsPage(){
     const id = params.id
     const {name, description, planet, durationInDays, date} = details;
 
+    const navigate = useNavigate();
+
     const getTripDetail = (id) =>{
         services.request.get(`${base_URL}/trip/${id}`,{
             headers:{
@@ -27,8 +30,8 @@ export default function TripDetailsPage(){
             setCandidates(res.data.trip.candidates)
             setApproved(res.data.trip.approved)
         })
-        .catch(err => console.log(err.response.data))
-    }
+        .catch(err => console.log(err.response.data));
+    };
 
     const decideCandidate = (tripId, candidateId, decision) =>{
         services.request.put(`${base_URL}/trips/${tripId}/candidates/${candidateId}/decide`,{
@@ -40,7 +43,12 @@ export default function TripDetailsPage(){
         })
         .then(res => setKeyrender(!keyRender))
         .catch(err => console.log(err.response.data))
-    }
+    };
+
+    const logout = () =>{
+        localStorage.removeItem("token");
+        navigate("/login");       
+    };
 
     useEffect(()=>{
         getTripDetail(id)
@@ -48,7 +56,11 @@ export default function TripDetailsPage(){
 
     return(
         <div>
-            <MenuHeader/>
+            <MenuHeader
+                item1={"Criar Viagem"}
+                item2={"Logout"}
+                function2={logout}
+            />
             <Container>
                 <ContainerDescriptionTrip>
                     <Header>
@@ -69,6 +81,7 @@ export default function TripDetailsPage(){
                     <Candidates>
                         {candidates.length  ? candidates.map(candidate =>
                             <Card
+                                key={candidate.id}
                                 name={candidate.name}
                                 profession={candidate.profession}
                                 age={candidate.age}

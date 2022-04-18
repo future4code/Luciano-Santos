@@ -42,7 +42,8 @@ export default function ApplicationFormPage(){
         setCountry(val)
     }
 
-    const applyToTrip = (id) =>{
+    const applyToTrip = (e, id) =>{
+        e.preventDefault();
         services.request.post(`${base_URL}/trips/${id}/apply`,{
             name,
             age,
@@ -50,7 +51,7 @@ export default function ApplicationFormPage(){
             profession,
             country
         })
-        .then(res => alert(res.data.message))
+        .then(res => console.log(res.data.message))
         .catch(err => console.log(err.response.data))
     }
 
@@ -63,13 +64,13 @@ export default function ApplicationFormPage(){
             />
             <ContainerForm>
             <h1>Inscreva-se para uma viagem</h1>
-                <Form>
-                    <select 
-                        defaultValue={'DEFAULT'} 
+                <Form onSubmit={(e)=> applyToTrip(e, choice)}>
+                    <select
                         onChange={handleChange}
                         value={choice}
+                        required
                     >
-                        <option value="DEFAULT" enable>Escolha uma viagem</option>
+                        <option value="" disabled>Escolha uma viagem</option>
                             {trips.map(option =>(
                                     <option key={option.id} value={option.id}>{option.name}</option>
                                 )
@@ -79,38 +80,42 @@ export default function ApplicationFormPage(){
                         value={name}
                         onChange={onChangeName}
                         placeholder={"Nome"}
+                        required
                     />
                     <input
                         value={age}
                         onChange={onChangeAge}
                         placeholder={"Idade"}
                         type={"number"}
+                        required
                     />
                     <input
                         value={applicationText}
                         onChange={onChangeApplicationText}
                         placeholder={"Texto de candidatura"}
+                        required
                     />
                     <input
                         value={profession}
                         onChange={onChangeProfession}
                         placeholder={"Profissão"}
+                        required
                     />
                     <CountryDropdown
-                        defaultOptionLabel="Escolha um País"
                         value={country}
                         onChange={(val)=> selectRegion(val)}
+                        defaultOptionLabel="Selecione um país"
+                        required
                     />
+                    <ContainerButtons>
+                        <Button                        
+                            color={"#2cbc63"}
+                            text="Enviar"
+                            width={"10rem"}
+                            height={"4rem"}
+                        />
+                    </ContainerButtons>
                 </Form>
-                <ContainerButtons>
-                    <Button 
-                        onClick={()=> applyToTrip(choice)}
-                        color={"#2cbc63"}
-                        text="Enviar"
-                        width={"10rem"}
-                        height={"4rem"}
-                    />
-                </ContainerButtons>
             </ContainerForm>
         </Container>
     )
