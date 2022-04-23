@@ -10,4 +10,7 @@ export const ContainerMain = styled.div`
     align-items: center;
 `
 export const Trips = styled.div`
+
+display: grid;
+    grid-template-columns: repeat(2, 1fr);
 `

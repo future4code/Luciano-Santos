@@ -15,7 +15,7 @@ export default function AdminHomePage(){
         services.request.get(`${base_URL}/trips`)
         .then(res => setTrips(res.data.trips))
         .catch()
-    }
+    };
 
     const deleteTrip = (id) =>{
         services.request.delete(`${base_URL}/trips/${id}`,{
@@ -25,7 +25,7 @@ export default function AdminHomePage(){
         })
         .then(getTrips)
         .catch(err => console.log(err.response.data))
-    }
+    };
 
     const logout = () =>{
         localStorage.removeItem("token");
@@ -35,15 +35,20 @@ export default function AdminHomePage(){
     const goToDetailsTrip = (id) =>{
         navigate(`/admin/trips/${id}`)
     };
+
+    const goToCreateTrip = () =>{
+        navigate("/admin/trips/create");
+    };
     
     useEffect(()=>{
       getTrips()  
-    },[])
+    },[]);
 
     return(
         <Container>
             <MenuHeader
                 item1={"Criar Viagem"}
+                function1={goToCreateTrip}
                 item2={"Logout"}
                 function2={logout}
             />

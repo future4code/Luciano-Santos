@@ -50,14 +50,19 @@ export default function TripDetailsPage(){
         navigate("/login");       
     };
 
+    const goToCreateTrip = () =>{
+        navigate("/admin/trips/create");
+    };
+
     useEffect(()=>{
         getTripDetail(id)
-    },[keyRender])
+    },[keyRender]);
 
     return(
         <div>
             <MenuHeader
                 item1={"Criar Viagem"}
+                function1={goToCreateTrip}
                 item2={"Logout"}
                 function2={logout}
             />

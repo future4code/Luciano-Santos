@@ -5,6 +5,8 @@ import { listPlanets } from "../../constants/listPlanets";
 import * as services from "../../services/apiRequestAxios";
 import { base_URL } from "../../constants/urls";
 import Button from "../../components/button/index";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function CreateTripPage(){
 
@@ -46,12 +48,13 @@ export default function CreateTripPage(){
                 auth: localStorage.getItem("token")
             }
         })
-        .then(alert("viagem criada com sucesso!"))
-        .catch(err => console.log(err.response.data))
+        .then(() => toast.success("Viagem criada !"))
+        .catch(err => toast.error(err.response.data.message))
     }
 
     return(
         <Container>
+            <ToastContainer theme={"colored"}/>
             <MenuHeader            
             />
             <ContainerForm>
