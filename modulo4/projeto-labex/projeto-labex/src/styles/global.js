@@ -10,13 +10,13 @@ export default createGlobalStyle`
         list-style: square;
     }
 
-    h1, h2{
+    /* h1, h2{
         font-size: 46px;
         color: rgba(61, 62, 62, 1);
-    }
+    } */
 
     img{
-        width: 90%;
+        width: 70%;
     }
 
     input{

@@ -17,6 +17,6 @@ export const Container = styled.button`
     }
 `
 export const P = styled.p`
-    color: azure;
+    color: #7900FF;
     font-size: 1rem;
 `

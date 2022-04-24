@@ -30,10 +30,13 @@ export const ContainerDescriptionTrip = styled.div`
     height: 80vh;    
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     border-radius: 5px;
+    background-color: #082032;
+    color: white;
 `
 export const Description = styled.div`
     display: flex;
     flex-direction: column;
+    width: 90%;    
 `
 export const ContainerApproved = styled.div`
     display: flex;

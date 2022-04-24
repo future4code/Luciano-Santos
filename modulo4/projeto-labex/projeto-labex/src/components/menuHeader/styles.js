@@ -5,7 +5,10 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-around;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-    height: 15vh;
+    background-color: #7900FF;
+    color: #CFFFDC;
+    height: 10vh;
+    width: 100%;
 `
 export const Ul = styled.ul`
     display: flex;
