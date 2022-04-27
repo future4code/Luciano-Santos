@@ -1,0 +1,8 @@
+### Filtrar usuários por nome.
+GET http://localhost:3003/users/name?name=Amanda
+
+### Pegar usuário pelo tipo
+GET http://localhost:3003/users/oper
+
+### Pegar todos os usuários ordernados em ordem crescente.
+GET http://localhost:3003/users?sort=name&order=ASC&page=6
