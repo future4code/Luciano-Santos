@@ -1,0 +1,35 @@
+### Criar novo usuário!
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+	"name": "Sebastian",
+	"nickname": "sebastianRib5",
+	"email": "sebastian@email.com"
+}
+
+### Pegar usuário pelo id.
+GET http://localhost:3003/user/948f7135-ff52-4db8-999a-dce59a2ecdd6
+
+### Editar um usuário.
+PUT http://localhost:3003/user/edit/948f7135-ff52-4db8-999a-dce59a2ecdd6
+Content-Type: application/json
+
+{
+	"name": "Luciano",
+	"nickname": "Lrds"
+}
+
+### Criar nova tarefa.
+POST http://localhost:3003/task
+Content-Type: application/json
+
+{
+	"title": "Comprar cadeiras.",
+	"description": "Comprar cadeiras para sala de reuniões.",
+	"limitDate": "30-04-2022",
+	"creatorUserId": "ecb05af3-9616-478e-8254-6496b6b658a2"
+}
+
+### Pegar tarefa pelo id.
+GET http://localhost:3003/task/a58459ec-180c-47aa-a043-b1221a6f8ca2
