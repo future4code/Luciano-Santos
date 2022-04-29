@@ -39,7 +39,11 @@ export default function LoginPage(){
             localStorage.setItem("token", data.token)
             navigate("/admin/trips/list", {replace: false})
         })
-        .catch(err => toast.error(err.response.data.message));
+        .catch(err => {
+            if(err.response.data.message === 'Senha incorreta' || 'Usuário não encontrado'){
+                toast.error('Sua conta ou senha está incorreta.')
+            }
+        });
     };
 
     return(

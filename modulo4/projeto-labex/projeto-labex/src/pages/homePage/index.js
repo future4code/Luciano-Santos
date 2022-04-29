@@ -27,8 +27,8 @@ export default function Home(){
                 <ContainerSubmenu>
                     <Button
                         onClick={() => navigate("/trips/list")}                        
-                        color={"#93FFD8"} 
-                        colorHover={"#2C394B"} 
+                        color={"#000000"} 
+                        colorHover={"#211f1f"} 
                         text="Ver viagens"
                         width={"15rem"}
                         height={"5rem"}
@@ -36,8 +36,8 @@ export default function Home(){
                     />
                     <Button
                         onClick={goToAreaAdmin}                        
-                        color={"#93FFD8"} 
-                        colorHover={"#2C394B"} 
+                        color={"#000000"} 
+                        colorHover={"#211f1f"} 
                         text="Área admin"
                         width={"15rem"}
                         height={"5rem"}

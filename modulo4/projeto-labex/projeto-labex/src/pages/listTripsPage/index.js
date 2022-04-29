@@ -3,7 +3,7 @@ import {base_URL} from "../../constants/urls";
 import MenuHeader from "../../components/menuHeader";
 import Card from "../../components/card/index";
 import {Header} from "./styles";
-import { Container, ContainerTrips, Trips, H1 } from "./styles";
+import { Container, ContainerTrips, Trips } from "./styles";
 import Button from "../../components/button/index";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ export default function ListTripPage(){
             />
             <ContainerTrips>
                 <Header>
-                    <H1>Lista de viagens</H1>
+                    <h1>Lista de viagens</h1>
                     <Button
                         onClick={() => navigate("/trips/application")}
                         color={"#2cbc63"}

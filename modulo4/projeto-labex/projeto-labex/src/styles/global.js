@@ -1,24 +1,20 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-    p, h1{
+    /* p, h1{
         font-weight: 700;
         font-family: roboto;
-    }
-
+    } */
     ul{
         list-style: square;
     }
-
     /* h1, h2{
         font-size: 46px;
         color: rgba(61, 62, 62, 1);
     } */
-
     img{
-        width: 70%;
+        width: 90%;
     }
-
     input{
         height: 2rem;
     }

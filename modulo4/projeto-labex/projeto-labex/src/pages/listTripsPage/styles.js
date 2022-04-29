@@ -12,19 +12,24 @@ export const Header = styled.div`
     margin-bottom: 1rem;
     font-family: roboto;
     font-size: 46px;
+
+    h1{
+        margin: .5rem;
+        font-size: 46px;
+        color: #FF0000;
+    }
 `
 export const ContainerTrips = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;    
-    border-radius: 5px;
+    height: 100vh;
+    /* background-image: linear-gradient(#232526, #414345 ); */
+    /* background: azure; */
 `
 export const Trips = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-`
-export const H1 = styled.h1`
-    margin: .5rem;
+    padding: 1rem;
 `

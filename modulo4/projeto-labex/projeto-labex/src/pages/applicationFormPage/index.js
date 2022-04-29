@@ -6,6 +6,8 @@ import {Container, Form, ContainerForm, ContainerButtons} from "./styles";
 import { CountryDropdown } from 'react-country-region-selector';
 import MenuHeader from "../../components/menuHeader";
 import Button from "../../components/button/index";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ApplicationFormPage(){
     
@@ -51,12 +53,17 @@ export default function ApplicationFormPage(){
             profession,
             country
         })
-        .then(res => console.log(res.data.message))
+        .then(res => {
+            if(res.data.message === 'Application registered successfully'){
+                toast.success('Candidatura realizada com sucesso!')
+            };
+        })
         .catch(err => console.log(err.response.data))
     }
 
     return(
         <Container>
+            <ToastContainer theme={"colored"}/>
             <MenuHeader
                 item1={"Home"}
                 item2={"Sobre"}
