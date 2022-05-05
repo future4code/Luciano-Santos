@@ -24,8 +24,6 @@ export const ContainerTrips = styled.div`
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    /* background-image: linear-gradient(#232526, #414345 ); */
-    /* background: azure; */
 `
 export const Trips = styled.div`
     display: grid;
