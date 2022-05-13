@@ -138,6 +138,12 @@ import { IndustrialClient } from "./Classes/IndustrialClient";
 
 // Exercício 6
 
+// a) Da classe Industry, por que a classe Industry possui o atributo machinesQuantity.
+
+// b) Interface Client, pois necessita dos atributos e métodos declarados no Client.
+
+// c) Por que neste casso não há a necessidade de usar métodos Setters.
+
 const newIndustrial = new IndustrialClient(
     "Facchini",
     2,

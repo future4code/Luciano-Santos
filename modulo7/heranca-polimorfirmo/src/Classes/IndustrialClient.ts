@@ -6,15 +6,15 @@ export class IndustrialClient extends Industry implements Client{
         public name: string,
         public registrationNumber: number,
         public consumedEnergy: number,
-        private registerNumber: number,
+        private insdustryNumber: number,
         machinesQuantity: number,
         cep: string
     ){
         super(machinesQuantity, cep)
     }
 
-    getRegisterNumber(): number{
-        return this.registerNumber
+    getInsdustryNumber(): number{
+        return this.insdustryNumber
     }
 
     calculateBill(): number {
