@@ -1,0 +1,13 @@
+### Criar usuário;
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name": "Sebastian",
+    "nickname": "SebaRib5",
+    "email": "seba@email.com",
+    "password": "123123"
+}
+
+### Pegar todos os usuários;
+GET http://localhost:3003/all

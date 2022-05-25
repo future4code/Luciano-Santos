@@ -1,10 +1,10 @@
-import { app } from "./app"
-import { createUser } from './endpoints/createUser'
-import { createTask } from './endpoints/createTask'
+import { app } from "./controller/app";
+import { CreateUserController } from "./controller/CreateUserController";
+import { GetAllUsersController } from "./controller/GetAllUsersController";
 
+const userController = new CreateUserController();
+const getAllUsers = new GetAllUsersController();
 
-app.post('/user', createUser)
-
-app.post('/task', createTask)
-
+app.post('/user', userController.createUser);
+app.get('/all', getAllUsers.getAllUsers);
 
