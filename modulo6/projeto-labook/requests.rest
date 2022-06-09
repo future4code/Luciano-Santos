@@ -1,0 +1,23 @@
+### Criar novo usuário.
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "name": "Luciano",
+    "email": "luciano@email.com",
+    "password": "asdasd"
+}
+
+### Criar novo post.
+POST http://localhost:3003/post
+Content-Type: application/json
+
+{
+    "authorId": "75827d17-e75c-477b-8bfe-977ee1e9de91",
+    "description": "Animal",
+    "photo": "https://picsum.photos/200/300?grayscale",
+    "type": "normal"    
+}
+
+### Buscar um post.
+GET http://localhost:3003/post/57c90ee9-59ab-4a93-a8f9-02d7d9966600
