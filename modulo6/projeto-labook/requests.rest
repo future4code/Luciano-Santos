@@ -3,21 +3,35 @@ POST http://localhost:3003/users
 Content-Type: application/json
 
 {
-    "name": "Luciano",
-    "email": "luciano@email.com",
+    "name": "Eliana",
+    "email": "eliana@email.com",
     "password": "asdasd"
 }
 
 ### Criar novo post.
-POST http://localhost:3003/post
+POST http://localhost:3003/posts
 Content-Type: application/json
 
 {
-    "authorId": "75827d17-e75c-477b-8bfe-977ee1e9de91",
-    "description": "Animal",
-    "photo": "https://picsum.photos/200/300?grayscale",
-    "type": "normal"    
+    "authorId": "c5560450-f368-400b-853c-4fb421eaa0da",
+    "description": "meu aniversário",
+    "photo": "https://picsum.photos/200/300",
+    "type": "event"    
 }
 
 ### Buscar um post.
-GET http://localhost:3003/post/57c90ee9-59ab-4a93-a8f9-02d7d9966600
+GET http://localhost:3003/posts/6ce59b4f-c59d-499d-94c6-540f39d850ca
+
+### Criar uma amizade.
+POST http://localhost:3003/friendship/2fa2fb96-4124-421e-aa6d-5ca98d402944
+Content-Type: application/json
+
+{
+    "receivingUserId": "c5560450-f368-400b-853c-4fb421eaa0da"
+}
+
+### Deletar uma amizade.
+DELETE http://localhost:3003/friendship/2c9c6433-20d8-4ac9-8898-b1776b4c988c/c5560450-f368-400b-853c-4fb421eaa0da
+
+### Ver todos os pots dos amigos do usuário.
+GET http://localhost:3003/posts/2fa2fb96-4124-421e-aa6d-5ca98d402944/feed

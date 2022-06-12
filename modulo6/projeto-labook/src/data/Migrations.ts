@@ -23,6 +23,13 @@ export class Migrations extends BaseDataBase {
             author_id VARCHAR(255),
             FOREIGN KEY (author_id) REFERENCES labook_users (id)
          );
+
+         CREATE TABLE IF NOT EXISTS labook_friendships(
+            requesting_user_id VARCHAR(255) NOT NULL,
+            FOREIGN KEY (requesting_user_id) REFERENCES labook_users (id),
+            receiving_user_id VARCHAR(255) NOT NULL,
+            FOREIGN KEY (receiving_user_id) REFERENCES labook_users (id)
+         );
          `)
          .then(() => console.log("Tabelas criadas!"))
          .catch(() => console.log("Implementar erro!"));

@@ -1,10 +1,3 @@
-export type User = {
-    id: string,
-    name: string,
-    email: string,
-    password: string
-};
-
 enum POST_TYPES {
     NORMAL = "normal",
     EVENT = "event"
@@ -12,6 +5,13 @@ enum POST_TYPES {
 
 export type Post = {
     id: string,
+    photo: string,
+    description: string,
+    type: POST_TYPES,
+    authorId: string
+};
+
+export interface PostInputDTO {
     photo: string,
     description: string,
     type: POST_TYPES,

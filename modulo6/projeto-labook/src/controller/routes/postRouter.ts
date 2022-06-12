@@ -7,3 +7,4 @@ const postController = new PostController();
 
 postRouter.post("/", postController.createPost);
 postRouter.get("/:id", postController.getPost);
+postRouter.get("/:userId/feed", postController.getFeed);
