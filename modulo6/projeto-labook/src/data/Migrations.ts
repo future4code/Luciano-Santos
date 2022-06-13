@@ -19,6 +19,7 @@ export class Migrations extends BaseDataBase {
             photo VARCHAR(255) NOT NULL,
             description VARCHAR(255) NOT NULL,
             type ENUM("normal","event") DEFAULT "normal",
+            liked ENUM("true", "false") DEFAULT "false",
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             author_id VARCHAR(255),
             FOREIGN KEY (author_id) REFERENCES labook_users (id)

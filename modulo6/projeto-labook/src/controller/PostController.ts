@@ -11,7 +11,7 @@ export class PostController {
         try {
             const { photo, description, type, authorId } = req.body;
 
-            if(!photo|| !description || !type || !authorId) {
+            if (!photo || !description || !type || !authorId) {
                 throw new InvalidInput;
             };
 
@@ -42,25 +42,63 @@ export class PostController {
             const postBusiness = new PostBusiness();
 
             const result = await postBusiness.getPost(id);
-            
+
             res.status(200).send(result);
         } catch (error: any) {
             throw new Error(error.message);
         };
     };
 
-    public async getFeed(
+    public async getAllFeed(
         req: Request,
         res: Response
     ) {
         try {
             const { userId } = req.params;
+            
+            const page = Number(req.query.page);
 
             const postBusiness = new PostBusiness();
 
-            const result = await postBusiness.getFeed(userId);
+            const result = await postBusiness.getAllFeed(userId, page);
 
             res.status(200).send(result);
+        } catch (error: any) {
+            throw new Error(error.message);
+        };
+    };
+
+    public async getFeedPerType(
+        req: Request,
+        res: Response
+    ) {
+        try {
+            const { userId } = req.params;
+            const { type } = req.query;
+
+            const postBusiness = new PostBusiness();
+
+            const result = await postBusiness.getFeedPerType(userId, type as string);
+
+            res.status(200).send(result);
+        } catch (error: any) {
+            throw new Error(error.message);
+        };
+    };
+
+    public async liked(
+        req: Request,
+        res: Response
+    ) {
+        try {
+            const { postId } = req.params;
+            const { liked } = req.body;
+
+            const postBusiness = new PostBusiness();
+
+            await postBusiness.liked(postId, liked);
+
+            res.status(200).send(liked === "true" ? "Post curtido!" : "Post descurtido!");
         } catch (error: any) {
             throw new Error(error.message);
         };

@@ -3,8 +3,8 @@ POST http://localhost:3003/users
 Content-Type: application/json
 
 {
-    "name": "Eliana",
-    "email": "eliana@email.com",
+    "name": "Edwirges",
+    "email": "edwirges@email.com",
     "password": "asdasd"
 }
 
@@ -13,25 +13,36 @@ POST http://localhost:3003/posts
 Content-Type: application/json
 
 {
-    "authorId": "c5560450-f368-400b-853c-4fb421eaa0da",
-    "description": "meu aniversário",
+    "authorId": "a63ff54d-98b6-48ed-868d-e62be83c7e24",
+    "description": "Final de semana já era!",
     "photo": "https://picsum.photos/200/300",
-    "type": "event"    
+    "type": "normal"    
 }
 
 ### Buscar um post.
 GET http://localhost:3003/posts/6ce59b4f-c59d-499d-94c6-540f39d850ca
 
 ### Criar uma amizade.
-POST http://localhost:3003/friendship/2fa2fb96-4124-421e-aa6d-5ca98d402944
+POST http://localhost:3003/friendship/3dcb546a-d517-4ac8-b701-2260b71aa3c8
 Content-Type: application/json
 
 {
-    "receivingUserId": "c5560450-f368-400b-853c-4fb421eaa0da"
+    "receivingUserId": "a63ff54d-98b6-48ed-868d-e62be83c7e24"
 }
 
 ### Deletar uma amizade.
-DELETE http://localhost:3003/friendship/2c9c6433-20d8-4ac9-8898-b1776b4c988c/c5560450-f368-400b-853c-4fb421eaa0da
+DELETE http://localhost:3003/friendship/3dcb546a-d517-4ac8-b701-2260b71aa3c8/a63ff54d-98b6-48ed-868d-e62be83c7e24
 
 ### Ver todos os pots dos amigos do usuário.
-GET http://localhost:3003/posts/2fa2fb96-4124-421e-aa6d-5ca98d402944/feed
+GET http://localhost:3003/posts/c6c80397-4a2c-4a77-a7a1-5663992ecd73/feed/page?page=1
+
+### Ver todos os post dos amigos do usuário por tipo.
+GET http://localhost:3003/posts/c6c80397-4a2c-4a77-a7a1-5663992ecd73/feed/type?type=normal
+
+### Curti post.
+PUT http://localhost:3003/posts/liked/cde1f7bb-a6f9-46ec-9604-b5c8351fb0c1
+Content-Type: application/json
+
+{
+    "liked": "true"
+}
