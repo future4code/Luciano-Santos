@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { InvalidInput } from "../Error/generic";
+import { InvalidEmail, InvalidInput, InvalidPassword } from "../Error/generic";
 import { UserInputDTO } from "../model/users";
 
 export class UserController {
@@ -13,6 +13,14 @@ export class UserController {
 
             if(!name || !email || !password){
                 throw new InvalidInput;
+            };
+
+            if(!email.includes("@")){
+                throw new InvalidEmail;
+            };
+
+            if(password.length < 6){
+                throw new InvalidPassword;
             };
 
             const userBusiness = new UserBusiness();

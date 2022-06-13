@@ -3,8 +3,8 @@ POST http://localhost:3003/users
 Content-Type: application/json
 
 {
-    "name": "Edwirges",
-    "email": "edwirges@email.com",
+    "name": "lucas",
+    "email": "lucas@email.com",
     "password": "asdasd"
 }
 
@@ -40,7 +40,7 @@ GET http://localhost:3003/posts/c6c80397-4a2c-4a77-a7a1-5663992ecd73/feed/page?p
 GET http://localhost:3003/posts/c6c80397-4a2c-4a77-a7a1-5663992ecd73/feed/type?type=normal
 
 ### Curti post.
-PUT http://localhost:3003/posts/liked/cde1f7bb-a6f9-46ec-9604-b5c8351fb0c1
+PUT http://localhost:3003/posts/liked/17711d74-6589-4165-af6d-3b55cd716ec0
 Content-Type: application/json
 
 {

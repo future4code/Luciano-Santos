@@ -55,8 +55,12 @@ export class PostController {
     ) {
         try {
             const { userId } = req.params;
-            
-            const page = Number(req.query.page);
+
+            let page = Number(req.query.page);
+
+            if (!page) {
+                page = 1;
+            };
 
             const postBusiness = new PostBusiness();
 
@@ -92,6 +96,7 @@ export class PostController {
     ) {
         try {
             const { postId } = req.params;
+            
             const { liked } = req.body;
 
             const postBusiness = new PostBusiness();

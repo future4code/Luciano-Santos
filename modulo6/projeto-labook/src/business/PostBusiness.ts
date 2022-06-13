@@ -81,6 +81,10 @@ export class PostBusiness {
         try {
             const postDB = new PostDataBase();
 
+            if(!liked.includes("true" || "false")){
+                liked = "false"
+            };
+
             await postDB.alterToLike(postId, liked);
         } catch (error: any) {
             throw new Error(error.message);
