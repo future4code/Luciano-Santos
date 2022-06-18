@@ -6,6 +6,7 @@ import {
   EditUserInputDTO,
   EditUserInput,
 } from "../model/user";
+import { generateID } from "../services/generateId";
 
 export class UserBusiness {
   public createUser = async (input: UserInputDTO) => {
@@ -27,7 +28,7 @@ export class UserBusiness {
         throw new InvalidEmail();
       }
 
-      const id: string = Date.now().toString();
+      const id: string = generateID();
 
       const user: user = {
         id,

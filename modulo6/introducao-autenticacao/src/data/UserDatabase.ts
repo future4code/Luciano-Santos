@@ -14,6 +14,8 @@ export class UserDatabase extends BaseDatabase {
           password: user.password,
         })
         .into("Auth_users");
+
+        console.log(user)
     } catch (error: any) {
       throw new CustomError(400, error.message);
     }
