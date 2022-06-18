@@ -25,7 +25,7 @@ export class UserBusiness {
         throw new InvalidEmail();
       }
 
-      if (password.length < 6){
+      if (password.length < 6) {
         throw new InvalidPassword();
       }
 
@@ -39,7 +39,41 @@ export class UserBusiness {
       const userDatabase = new UserDatabase();
       await userDatabase.insertUser(user);
 
-      const token = generateToken({id});
+      const token = generateToken({ id });
+
+      return token;
+    } catch (error: any) {
+      throw new CustomError(400, error.message);
+    }
+  };
+
+  public login = async (input: UserInputDTO) => {
+    try {
+      const { email, password } = input;
+
+      if (!email || !password) {
+        throw new CustomError(
+          400,
+          'Preencha os campos "email" e "password"'
+        );
+      }
+
+      if (!email || !email.includes("@")) {
+        throw new InvalidEmail();
+      }
+
+      if (password.length < 6) {
+        throw new InvalidPassword();
+      }
+
+      const userDatabase = new UserDatabase();
+      const user = await userDatabase.findUserByEmail(email);
+
+      if (user.password !== password) {
+        throw new InvalidPassword();
+      };
+
+      const token = generateToken(user.id);
 
       return token;
     } catch (error: any) {

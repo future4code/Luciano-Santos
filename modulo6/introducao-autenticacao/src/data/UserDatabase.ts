@@ -12,8 +12,19 @@ export class UserDatabase extends BaseDatabase {
           password: user.password,
         })
         .into("Auth_users");
+    } catch (error: any) {
+      throw new CustomError(400, error.message);
+    }
+  };
 
-        console.log(user)
+  public findUserByEmail = async (email: string) => {
+    try {
+      const result = await UserDatabase.connection
+        .select("*")
+        .into("Auth_users")
+        .where({email});
+
+      return result[0];
     } catch (error: any) {
       throw new CustomError(400, error.message);
     }
