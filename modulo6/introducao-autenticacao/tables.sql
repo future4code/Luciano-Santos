@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS Auth_users (
     id VARCHAR(64) PRIMARY KEY,
     name VARCHAR(64) NOT NULL,
     nickname VARCHAR(64) NOT NULL,
-    email VARCHAR(64) NOT NULL,
+    email VARCHAR(64) NOT NULL UNIQUE,
     password VARCHAR(64) NOT NULL
 );
 
@@ -25,3 +25,6 @@ CREATE TABLE IF NOT EXISTS Auth_assignees (
     FOREIGN KEY (assignee_id) REFERENCES Auth_users(id)
 );
 
+DROP TABLE Auth_users;
+DROP TABLE Auth_tasks;
+DROP TABLE Auth_assignees;
