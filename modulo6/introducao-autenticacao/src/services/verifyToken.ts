@@ -1,10 +1,11 @@
 import { verify } from "jsonwebtoken";
 
 export const verifyToken = (token: string) => {
-    const tokenData = verify(
-        token,
-        process.env.JWT_KEY as string
-    );
+    const payload = verify(token, process.env.JWT_KEY as string) as any;
+    
+    const result = {
+        id: payload.id
+    };
 
-    return tokenData;
+    return result;
 };

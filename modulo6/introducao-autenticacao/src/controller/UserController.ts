@@ -33,7 +33,7 @@ export class UserController {
       const userBusiness = new UserBusiness()
       const token = await userBusiness.login(input);
 
-      res.status(201).send({ token });
+      res.status(200).send({ token });
     } catch (error: any) {
       res.status(400).send(error.message);
     }
