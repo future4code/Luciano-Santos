@@ -8,8 +8,6 @@ export class UserDatabase extends BaseDatabase {
       await UserDatabase.connection
         .insert({
           id: user.id,
-          name: user.name,
-          nickname: user.nickname,
           email: user.email,
           password: user.password,
         })

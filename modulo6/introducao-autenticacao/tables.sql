@@ -1,8 +1,6 @@
 
 CREATE TABLE IF NOT EXISTS Auth_users (
     id VARCHAR(64) PRIMARY KEY,
-    name VARCHAR(64) NOT NULL,
-    nickname VARCHAR(64) NOT NULL,
     email VARCHAR(64) NOT NULL UNIQUE,
     password VARCHAR(64) NOT NULL
 );

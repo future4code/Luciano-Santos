@@ -1,5 +1,5 @@
 import { UserDatabase } from "../data/UserDatabase";
-import { CustomError, InvalidEmail, InvalidName } from "../error/customError";
+import { CustomError, InvalidEmail, InvalidName, InvalidPassword } from "../error/customError";
 import {
   UserInputDTO,
   user,
@@ -7,38 +7,41 @@ import {
   EditUserInput,
 } from "../model/user";
 import { generateID } from "../services/generateId";
+import { generateToken } from "../services/generateToken";
 
 export class UserBusiness {
-  public createUser = async (input: UserInputDTO) => {
+  public signUp = async (input: UserInputDTO) => {
     try {
-      const { name, nickname, email, password } = input;
+      const { email, password } = input;
 
-      if (!name || !nickname || !email || !password) {
+      if (!email || !password) {
         throw new CustomError(
           400,
-          'Preencha os campos "name","nickname", "email" e "password"'
+          'Preencha os campos "email" e "password"'
         );
       }
 
-      if (name.length < 4) {
-        throw new InvalidName();
+      if (!email || !email.includes("@")) {
+        throw new InvalidEmail();
       }
 
-      if (!email.includes("@")) {
-        throw new InvalidEmail();
+      if (password.length < 6){
+        throw new InvalidPassword();
       }
 
       const id: string = generateID();
 
       const user: user = {
         id,
-        name,
-        nickname,
         email,
         password,
       };
       const userDatabase = new UserDatabase();
       await userDatabase.insertUser(user);
+
+      const token = generateToken({id});
+
+      return token;
     } catch (error: any) {
       throw new CustomError(400, error.message);
     }
