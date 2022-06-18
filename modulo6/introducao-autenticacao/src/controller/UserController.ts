@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { InvalidPassword } from "../error/customError";
-import { EditUserInputDTO, UserInputDTO } from "../model/user";
+import { UserInputDTO, UserOutputDTO } from "../model/user";
 
 export class UserController {
 
-  public signUp = async (req: Request, res: Response) => {
+  public signUp = async (req: Request, res: Response): Promise<void> => {
     try {
       const { email, password } = req.body;
 
@@ -13,16 +12,18 @@ export class UserController {
         email,
         password,
       };
-      const userBusiness = new UserBusiness()
+      
+      const userBusiness = new UserBusiness();
+
       const token = await userBusiness.signUp(input);
 
       res.status(201).send({ message: "Usuário criado!", token });
     } catch (error: any) {
       res.status(400).send(error.message);
-    }
+    };
   };
 
-  public login = async (req: Request, res: Response) => {
+  public login = async (req: Request, res: Response): Promise<void> => {
     try {
       const { email, password } = req.body;
 
@@ -30,30 +31,28 @@ export class UserController {
         email,
         password,
       };
-      const userBusiness = new UserBusiness()
+
+      const userBusiness = new UserBusiness();
+
       const token = await userBusiness.login(input);
 
       res.status(200).send({ token });
     } catch (error: any) {
       res.status(400).send(error.message);
-    }
+    };
   };
 
-  public editUser = async (req: Request, res: Response) => {
+  public getProfile = async (req: Request, res: Response): Promise<void> => {
     try {
+      const { authorization } = req.headers;
 
-      const input: EditUserInputDTO = {
-        name: req.body.name,
-        nickname: req.body.nickname,
-        id: req.params.id
-      };
+      const userBusiness = new UserBusiness();
 
-      const userBusiness = new UserBusiness()
-      userBusiness.editUser(input);
+      const profile = await userBusiness.getProfile(authorization!);
 
-      res.status(201).send({ message: "Usuário alterado!" });
+      res.status(200).send(profile);
     } catch (error: any) {
       res.status(400).send(error.message);
-    }
+    };
   };
-}
+};

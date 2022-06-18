@@ -1,9 +1,9 @@
 import { CustomError } from "../error/customError";
-import { EditUserInput, user } from "../model/user";
+import { user, UserOutputDTO } from "../model/user";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class UserDatabase extends BaseDatabase {
-  public insertUser = async (user: user) => {
+  public insertUser = async (user: user): Promise<void> => {
     try {
       await UserDatabase.connection
         .insert({
@@ -14,10 +14,10 @@ export class UserDatabase extends BaseDatabase {
         .into("Auth_users");
     } catch (error: any) {
       throw new CustomError(400, error.message);
-    }
+    };
   };
 
-  public findUserByEmail = async (email: string) => {
+  public findUserByEmail = async (email: string): Promise<user> => {
     try {
       const result = await UserDatabase.connection
         .select("*")
@@ -27,17 +27,19 @@ export class UserDatabase extends BaseDatabase {
       return result[0];
     } catch (error: any) {
       throw new CustomError(400, error.message);
-    }
+    };
   };
 
-  public editUser = async (user: EditUserInput) => {
+  public selectProfile = async (id: string): Promise<UserOutputDTO> => {
     try {
-      await UserDatabase.connection
-        .update({ name: user.name, nickname: user.nickname })
-        .where({ id: user.id })
-        .into("Auth_users");
+      const result = await UserDatabase.connection
+        .select("*")
+        .into("Auth_users")
+        .where({id});
+
+      return result[0];
     } catch (error: any) {
       throw new CustomError(400, error.message);
-    }
+    };
   };
-}
+};

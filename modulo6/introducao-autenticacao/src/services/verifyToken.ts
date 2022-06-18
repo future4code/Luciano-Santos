@@ -7,5 +7,5 @@ export const verifyToken = (token: string) => {
         id: payload.id
     };
 
-    return result;
+    return result.id;
 };

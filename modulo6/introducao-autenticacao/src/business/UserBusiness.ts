@@ -1,16 +1,16 @@
 import { UserDatabase } from "../data/UserDatabase";
-import { CustomError, InvalidEmail, InvalidName, InvalidPassword } from "../error/customError";
+import { CustomError, InvalidEmail, InvalidPassword } from "../error/customError";
 import {
   UserInputDTO,
   user,
-  EditUserInputDTO,
-  EditUserInput,
+  UserOutputDTO
 } from "../model/user";
 import { generateID } from "../services/generateId";
 import { generateToken } from "../services/generateToken";
+import { verifyToken } from "../services/verifyToken";
 
 export class UserBusiness {
-  public signUp = async (input: UserInputDTO) => {
+  public signUp = async (input: UserInputDTO): Promise<string> => {
     try {
       const { email, password } = input;
 
@@ -19,15 +19,15 @@ export class UserBusiness {
           400,
           'Preencha os campos "email" e "password"'
         );
-      }
+      };
 
       if (!email || !email.includes("@")) {
         throw new InvalidEmail();
-      }
+      };
 
       if (password.length < 6) {
         throw new InvalidPassword();
-      }
+      };
 
       const id: string = generateID();
 
@@ -36,7 +36,9 @@ export class UserBusiness {
         email,
         password,
       };
+
       const userDatabase = new UserDatabase();
+
       await userDatabase.insertUser(user);
 
       const token = generateToken({ id });
@@ -44,10 +46,10 @@ export class UserBusiness {
       return token;
     } catch (error: any) {
       throw new CustomError(400, error.message);
-    }
+    };
   };
 
-  public login = async (input: UserInputDTO) => {
+  public login = async (input: UserInputDTO): Promise<string> => {
     try {
       const { email, password } = input;
 
@@ -67,45 +69,38 @@ export class UserBusiness {
       }
 
       const userDatabase = new UserDatabase();
+
       const user = await userDatabase.findUserByEmail(email);
 
       if (user.password !== password) {
         throw new InvalidPassword();
       };
 
-      const token = generateToken(user.id);
+      const token = generateToken({id: user.id});
 
       return token;
     } catch (error: any) {
       throw new CustomError(400, error.message);
-    }
+    };
   };
 
-  public editUser = async (input: EditUserInputDTO) => {
+  public getProfile = async (token: string): Promise<UserOutputDTO> => {
     try {
-      const { name, nickname, id } = input;
 
-      if (!name || !nickname || !id) {
-        throw new CustomError(
-          400,
-          'Preencha os campos "id", "name" e "nickname"'
-        );
-      }
-
-      if (name.length < 4) {
-        throw new InvalidName();
-      }
-
-      const editUserInput: EditUserInput = {
-        id,
-        name,
-        nickname,
-      };
+      const authenticationData = verifyToken(token);
 
       const userDatabase = new UserDatabase();
-      await userDatabase.editUser(editUserInput);
+
+      const user = await userDatabase.selectProfile(authenticationData);
+
+      const userOutput: UserOutputDTO = {
+        id: user.id,
+        email: user.email
+      };
+      
+      return userOutput;
     } catch (error: any) {
       throw new CustomError(400, error.message);
-    }
+    };
   };
-}
+};
