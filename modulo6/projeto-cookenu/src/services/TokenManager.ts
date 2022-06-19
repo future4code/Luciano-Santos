@@ -1,5 +1,5 @@
 import { sign, verify } from "jsonwebtoken";
-import { IdUser } from "../model/types";
+import { IdUser } from "../model/users";
 
 export class TokenManager {
     public generateToken = (id: IdUser): string => {
