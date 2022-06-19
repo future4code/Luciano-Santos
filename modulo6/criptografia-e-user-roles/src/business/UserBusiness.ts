@@ -7,7 +7,11 @@ import {
 } from "../model/user";
 import { generateID } from "../services/generateId";
 import { generateToken } from "../services/generateToken";
+import { HashManager } from "../services/HashManager";
 import { verifyToken } from "../services/verifyToken";
+
+const userDatabase = new UserDatabase();
+const hashManager = new HashManager();
 
 export class UserBusiness {
   public signUp = async (input: UserInputDTO): Promise<string> => {
@@ -31,13 +35,13 @@ export class UserBusiness {
 
       const id: string = generateID();
 
+      const hashPassword = await hashManager.generateHash(password);
+
       const user: user = {
         id,
         email,
-        password,
+        password: hashPassword
       };
-
-      const userDatabase = new UserDatabase();
 
       await userDatabase.insertUser(user);
 
@@ -68,14 +72,14 @@ export class UserBusiness {
         throw new InvalidPassword();
       }
 
-      const userDatabase = new UserDatabase();
-
       const user = await userDatabase.findUserByEmail(email);
 
-      if (user.password !== password) {
+      const isValid = await hashManager.compare(password, user.password);
+
+      if (!isValid) {
         throw new InvalidPassword();
       };
-
+      
       const token = generateToken({id: user.id});
 
       return token;
@@ -88,8 +92,6 @@ export class UserBusiness {
     try {
 
       const authenticationData = verifyToken(token);
-
-      const userDatabase = new UserDatabase();
 
       const user = await userDatabase.selectProfile(authenticationData);
 
