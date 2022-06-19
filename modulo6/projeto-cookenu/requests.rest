@@ -1,0 +1,9 @@
+### Criar uma conta.
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name": "luciano",
+    "email": "lucianords@live.com",
+    "password": "$RAASDASaD4"
+}
