@@ -1,5 +1,6 @@
 import e, { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
+import { InvalidInput } from "../errors/generic";
 import { InvalidEmailPattern, InvalidPasswordPattern } from "../errors/users";
 import { UserInputDTO } from "../model/users";
 import { validateEmail } from "../services/validateEmail";
@@ -14,6 +15,10 @@ export class UserController {
     ) => {
         try {
             const { name, email, password } = req.body;
+
+            if (!name || !email || !password) {
+                throw new InvalidInput();
+            };
 
             const emailIsValid = validateEmail(email);
 
