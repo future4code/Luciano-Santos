@@ -3,7 +3,7 @@ import { UserBusiness } from "../business/UserBusiness";
 import { InvalidEmailPattern, InvalidPasswordPattern } from "../errors/users";
 import { UserInputDTO } from "../model/users";
 import { validateEmail } from "../services/validateEmail";
-import { validatePassword } from "../services/ValidatePassword";
+import { validatePassword } from "../services/validatePassword";
 
 const userBusiness = new UserBusiness();
 
