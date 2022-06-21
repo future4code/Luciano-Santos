@@ -9,8 +9,8 @@ export class HashManager {
         return hash;
     };
 
-    public verifyHash = (password: string, hash: string): Promise<boolean> => {
-        const isValid = bcrypt.compare(password, hash);
+    public verifyHash = async (password: string, hash: string): Promise<boolean> => {
+        const isValid = await bcrypt.compare(password, hash);
 
         return isValid;
     };

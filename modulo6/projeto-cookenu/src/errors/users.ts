@@ -8,6 +8,17 @@ export class InvalidPasswordPattern extends CustomError {
 
 export class InvalidEmailPattern extends CustomError {
     constructor() {
-        super(422, "Padrão de email inválido, insira um email parecido com isso: exemplo@email.com")
+        super(422, "Padrão de email inválido, insira um email parecido com isso: exemplo@email.com");
+    };
+};
+
+export class InvalidPassword extends CustomError {
+    constructor() {
+        super(401, "Senha inválida");
+    };
+};
+export class UserNotFound extends CustomError {
+    constructor() {
+        super(404, "Usuário não encontrado");
     };
 };

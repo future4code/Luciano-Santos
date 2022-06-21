@@ -1,5 +1,6 @@
 import { UserDataBase } from "../data/UserDataBase";
-import { User, UserInputDTO } from "../model/users";
+import { InvalidPassword, UserNotFound } from "../errors/users";
+import { User, SignupInputDTO, LoginInputDTO } from "../model/users";
 import generateID from "../services/generateID";
 import { HashManager } from "../services/HashManager";
 import { TokenManager } from "../services/TokenManager";
@@ -9,7 +10,7 @@ const hashManager = new HashManager();
 const tokenManager = new TokenManager();
 
 export class UserBusiness {
-    public signup = async (input: UserInputDTO): Promise<string> => {
+    public signup = async (input: SignupInputDTO): Promise<string> => {
         try {
 
             const id: string = generateID();
@@ -29,6 +30,29 @@ export class UserBusiness {
 
             return token;
 
+        } catch (error: any) {
+            throw new Error(error.message);
+        };
+    };
+
+    public login = async (input: LoginInputDTO): Promise<string> => {
+        try {           
+
+            const user = await userDB.selectUserByEmail(input.email);
+
+            if (!user) {
+                throw new UserNotFound();
+            };
+
+            const isValid = await hashManager.verifyHash(input.password, user.password);
+
+            if (!isValid) {
+                throw new InvalidPassword();
+            };
+            
+            const token = tokenManager.generateToken({ id: user.id });
+
+            return token;
         } catch (error: any) {
             throw new Error(error.message);
         };
