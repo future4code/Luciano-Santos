@@ -2,7 +2,8 @@
 CREATE TABLE IF NOT EXISTS Auth_users (
     id VARCHAR(64) PRIMARY KEY,
     email VARCHAR(64) NOT NULL UNIQUE,
-    password VARCHAR(64) NOT NULL
+    password VARCHAR(64) NOT NULL,
+    role ENUM("normal", "admin") DEFAULT "normal" 
 );
 
 CREATE TABLE IF NOT EXISTS Auth_tasks (

@@ -1,16 +1,17 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { UserInputDTO, UserOutputDTO } from "../model/user";
+import { SignupDTO, UserInputDTO, UserOutputDTO } from "../model/user";
 
 export class UserController {
 
   public signUp = async (req: Request, res: Response): Promise<void> => {
     try {
-      const { email, password } = req.body;
+      const { email, password, role } = req.body;
 
-      const input: UserInputDTO = {
+      const input: SignupDTO = {
         email,
         password,
+        role
       };
       
       const userBusiness = new UserBusiness();

@@ -10,6 +10,7 @@ export class UserDatabase extends BaseDatabase {
           id: user.id,
           email: user.email,
           password: user.password,
+          role: user.role
         })
         .into("Auth_users");
     } catch (error: any) {
