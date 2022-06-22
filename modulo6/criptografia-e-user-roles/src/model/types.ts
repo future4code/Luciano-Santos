@@ -1,3 +1,4 @@
-export type IdToGenerateToken = {
-    id: string
+export type AuthenticationData = {
+    id: string,
+    role: string
 };

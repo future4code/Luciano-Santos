@@ -1,10 +1,10 @@
 import { sign } from "jsonwebtoken";
-import { IdToGenerateToken } from "../model/types";
+import { AuthenticationData } from "../model/types";
 
-export const generateToken = (id: IdToGenerateToken): string => {
+export const generateToken = (payload: AuthenticationData): string => {
 
     const token = sign(
-        { id },
+        { payload },
         process.env.JWT_KEY as string,
         { expiresIn: "30min" }
     );

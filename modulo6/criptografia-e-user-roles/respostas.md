@@ -1,3 +1,4 @@
+# Exercícios Aula criptografia
 ### Exercício 1
 
 a) O que são os round e salt? Que valores são recomendados para o round? Que valor você usou? Por quê?
@@ -18,3 +19,7 @@ R: O cadastro, é necessário ter a senha criptografada salva no banco de dados 
 d) No exercício da aula anterior, nós criamos o endpoint user/profile. Também temos que modificar esse endpoint devido à adição da criptografia? Justifique.
 
 R: Não, neste caso o usuário já estaria autenticado e teria acesso ao token necessário para pegar o profile.
+
+# Exercícios Aula Autorização e user roles
+
+### Exercício 1
