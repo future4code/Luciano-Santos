@@ -46,7 +46,7 @@ export class UserController {
   public getProfile = async (req: Request, res: Response): Promise<void> => {
     try {
       const { authorization } = req.headers;
-
+      
       const userBusiness = new UserBusiness();
 
       const profile = await userBusiness.getProfile(authorization!);

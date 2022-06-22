@@ -1,5 +1,5 @@
 import { UserDatabase } from "../data/UserDatabase";
-import { CustomError, InvalidEmail, InvalidPassword } from "../error/customError";
+import { CustomError, InvalidEmail, InvalidPassword, UnauthorizedUser } from "../error/customError";
 import { AuthenticationData } from "../model/types";
 import {
   UserInputDTO,
@@ -43,7 +43,7 @@ export class UserBusiness {
         id,
         email,
         password: hashPassword,
-        role
+        role: role.toLowerCase()
       };
 
       await userDatabase.insertUser(user);
@@ -105,8 +105,12 @@ export class UserBusiness {
     try {
 
       const authenticationData = verifyToken(token);
-
+      
       const user = await userDatabase.selectProfile(authenticationData);
+      
+      if (user.role !== "normal") {
+        throw new UnauthorizedUser();
+      };
 
       const userOutput: UserOutputDTO = {
         id: user.id,

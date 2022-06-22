@@ -31,7 +31,7 @@ export class UserDatabase extends BaseDatabase {
     };
   };
 
-  public selectProfile = async (id: string): Promise<UserOutputDTO> => {
+  public selectProfile = async (id: string): Promise<user> => {
     try {
       const result = await UserDatabase.connection
         .select("*")
