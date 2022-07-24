@@ -10,3 +10,6 @@ CREATE TABLE IF NOT EXISTS DogWalking (
     start_time FLOAT NOT NULL,
     end_time FLOAT NOT NULL
 );
+
+DESCRIBE DogWalking;
+DROP TABLE DogWalking;
