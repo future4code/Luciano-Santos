@@ -1,0 +1,13 @@
+### Criar novo passeio.
+POST http://localhost:3003/dogWalking
+Content-Type: application/json
+
+{
+    "scheduleDate": "2022/12/01",
+    "duration": "60",
+    "latitude": 50,
+    "longitude": 40,
+    "pets": 1,
+    "startTime": 14,
+    "endTime": 15
+}
