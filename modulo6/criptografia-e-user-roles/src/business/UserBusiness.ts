@@ -1,9 +1,11 @@
 import { UserDatabase } from "../data/UserDatabase";
-import { CustomError, InvalidEmail, InvalidPassword } from "../error/customError";
+import { CustomError, InvalidEmail, InvalidPassword, UnauthorizedUser } from "../error/customError";
+import { AuthenticationData } from "../model/types";
 import {
   UserInputDTO,
   user,
-  UserOutputDTO
+  UserOutputDTO,
+  SignupDTO
 } from "../model/user";
 import { generateID } from "../services/generateId";
 import { generateToken } from "../services/generateToken";
@@ -14,14 +16,14 @@ const userDatabase = new UserDatabase();
 const hashManager = new HashManager();
 
 export class UserBusiness {
-  public signUp = async (input: UserInputDTO): Promise<string> => {
+  public signUp = async (input: SignupDTO): Promise<string> => {
     try {
-      const { email, password } = input;
+      const { email, password, role } = input;
 
-      if (!email || !password) {
+      if (!email || !password || !role) {
         throw new CustomError(
           400,
-          'Preencha os campos "email" e "password"'
+          'Preencha os campos "email", "password" e "role"'
         );
       };
 
@@ -40,12 +42,18 @@ export class UserBusiness {
       const user: user = {
         id,
         email,
-        password: hashPassword
+        password: hashPassword,
+        role: role.toLowerCase()
       };
 
       await userDatabase.insertUser(user);
 
-      const token = generateToken({ id });
+      const payload: AuthenticationData = {
+        id,
+        role
+      };
+
+      const token = generateToken(payload);
 
       return token;
     } catch (error: any) {
@@ -79,8 +87,13 @@ export class UserBusiness {
       if (!isValid) {
         throw new InvalidPassword();
       };
-      
-      const token = generateToken({id: user.id});
+
+      const payload: AuthenticationData = {
+        id: user.id,
+        role: user.role
+      };
+
+      const token = generateToken(payload);
 
       return token;
     } catch (error: any) {
@@ -92,14 +105,18 @@ export class UserBusiness {
     try {
 
       const authenticationData = verifyToken(token);
-
+      
       const user = await userDatabase.selectProfile(authenticationData);
+      
+      if (user.role !== "normal") {
+        throw new UnauthorizedUser();
+      };
 
       const userOutput: UserOutputDTO = {
         id: user.id,
         email: user.email
       };
-      
+
       return userOutput;
     } catch (error: any) {
       throw new CustomError(400, error.message);

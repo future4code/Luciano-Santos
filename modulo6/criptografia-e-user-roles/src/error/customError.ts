@@ -21,3 +21,8 @@ export class InvalidPassword extends CustomError{
         super(400, "Senha inválida")
     }
 }
+export class UnauthorizedUser extends CustomError{ 
+    constructor(){
+        super(401, "Usuário não autorizado")
+    }
+}

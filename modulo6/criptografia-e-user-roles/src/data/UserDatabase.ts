@@ -10,6 +10,7 @@ export class UserDatabase extends BaseDatabase {
           id: user.id,
           email: user.email,
           password: user.password,
+          role: user.role
         })
         .into("Auth_users");
     } catch (error: any) {
@@ -30,7 +31,7 @@ export class UserDatabase extends BaseDatabase {
     };
   };
 
-  public selectProfile = async (id: string): Promise<UserOutputDTO> => {
+  public selectProfile = async (id: string): Promise<user> => {
     try {
       const result = await UserDatabase.connection
         .select("*")
