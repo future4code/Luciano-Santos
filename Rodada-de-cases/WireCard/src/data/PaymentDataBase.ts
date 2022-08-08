@@ -61,5 +61,18 @@ export class PaymentDataBase extends BaseDataBase {
         } catch (err: any) {
             throw new Error(err.message || err.sqlMessage);
         };
-    }
+    };
+
+    selectPayment = async (id: string) => {
+        try {
+            const payment = await PaymentDataBase
+            .connection('Payment')
+            .select('buyer_id', 'amount', 'type')
+            .where({id});
+
+            return payment[0];
+        } catch (err: any) {
+            throw new Error(err.message || err.sqlMessage);
+        };
+    };
 };

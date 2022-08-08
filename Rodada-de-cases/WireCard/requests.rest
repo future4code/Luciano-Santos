@@ -13,3 +13,11 @@ Content-Type: application/json
     "cardExpirationDate": "02/25",
     "cardCVV": "650"
 }
+
+### Get payment.
+GET http://localhost:3003/payments
+Content-Type: application/json
+
+{
+    "id": "5e768762-78a1-4332-9b16-8b6202801b32"
+}

@@ -38,4 +38,16 @@ export class PaymentController {
             res.status(err.status || 400).send(err.message || err.sqlMessage);
         };
     };
+
+    getPayment = async (req: Request, res: Response) => {
+        try {
+            const { id } = req.body;
+
+            const payment = await paymentBusiness.getPayment(id);
+
+            res.send(payment)
+        } catch (err: any) {
+            res.status(err.status || 400).send(err.message || err.sqlMessage);
+        }
+    };
 };

@@ -43,3 +43,9 @@ export interface PaymentDataInputDTO {
     cardExpirationDate?: string;
     cardCVV?: string
 };
+
+export interface PaymentDataOutputDTO {
+    buyerID: string;
+    amount: number;
+    type: PaymentTypes;
+}

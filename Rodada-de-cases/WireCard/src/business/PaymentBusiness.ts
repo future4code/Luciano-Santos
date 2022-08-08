@@ -1,6 +1,6 @@
 import { PaymentDataBase } from "../data/PaymentDataBase";
 import { CustomError, InvalidInput } from "../Errors/CustomError";
-import { Buyer, Card, Payment, PaymentData, PaymentDataInputDTO } from "../model/paymentData";
+import { Buyer, Card, Payment, PaymentData, PaymentDataInputDTO, PaymentDataOutputDTO } from "../model/paymentData";
 import { generateBoletoNumber } from "../services/generateBoletoNumber";
 import { generateID } from "../services/generateID";
 
@@ -31,7 +31,7 @@ export class PaymentBusiness {
                 };
             };
 
-            const buyer: Buyer =  {
+            const buyer: Buyer = {
                 id: generateID(),
                 name,
                 email,
@@ -62,11 +62,24 @@ export class PaymentBusiness {
 
             const numberBoleto = generateBoletoNumber(amount);
             const result = type === 'Boleto' ? `Número do boleto: ${numberBoleto}` : 'Pagamento realizado ✅';
-            
+
             await paymentDB.insertPayment(paymentData);
-            
+
             return result;
 
+        } catch (err: any) {
+            throw new CustomError(err.status, err.message);
+        };
+    };
+
+    getPayment = async (input: string) => {
+        try {
+            const payment: PaymentDataOutputDTO = await paymentDB.selectPayment(input)
+
+            return {
+                payment,
+                status: payment.type === 'Boleto' ? 'Aguardando pagamento ⌚' : 'Pagamento realizado ✅'
+            };
         } catch (err: any) {
             throw new CustomError(err.status, err.message);
         };
