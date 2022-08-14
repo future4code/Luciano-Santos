@@ -1,0 +1,23 @@
+### Create payment.
+POST http://localhost:3003/payments
+Content-Type: application/json
+
+{
+    "name": "Edwirges Daiana",
+    "email": "dih@email.com",
+    "CPF": "965.855.996-22",
+    "amount": 2000,
+    "type": "Credit Card",
+    "cardHolderName": "Edwirges D",
+    "cardNumber": "5537 6987 9874 7896",
+    "cardExpirationDate": "02/25",
+    "cardCVV": "650"
+}
+
+### Get payment.
+GET http://localhost:3003/payments
+Content-Type: application/json
+
+{
+    "id": "5e768762-78a1-4332-9b16-8b6202801b32"
+}
