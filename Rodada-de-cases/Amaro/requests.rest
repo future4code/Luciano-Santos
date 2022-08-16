@@ -1,0 +1,8 @@
+### Create product.
+POST http://localhost:3003/product
+Content-Type: application/json
+
+{
+    "name": "Boné NBA Aba Curva Snapback Cleveland  ",
+    "tags": "aba curva, time"
+}
