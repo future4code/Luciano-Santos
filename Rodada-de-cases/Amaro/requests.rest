@@ -1,8 +1,11 @@
 ### Create product.
-POST http://localhost:3003/product
+POST http://localhost:3003/produto
 Content-Type: application/json
 
 {
-    "name": "Boné NBA Aba Curva Snapback Cleveland  ",
-    "tags": "aba curva, time"
+    "name": "Camiseta regata",
+    "tags": "personalizada,infantil"
 }
+
+### Get Product
+GET http://localhost:3003/produto/caneca

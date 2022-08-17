@@ -25,4 +25,22 @@ export class ProductBusiness {
             throw new Error(error.message || error.sqlMessage);
         }
     };
+
+    getProduct = async (search: string) => {
+        try {
+            const results = await productDB.selectProduct(search);
+
+            const products = results.map(product => {
+
+                const tags = product.tags.split(",");
+
+                return { ...product, tags }
+
+            });
+
+            return products;
+        } catch (error: any) {
+            throw new Error(error.message || error.sqlMessage);
+        };
+    };
 };

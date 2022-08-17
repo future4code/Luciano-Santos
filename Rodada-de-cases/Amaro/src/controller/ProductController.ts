@@ -25,4 +25,14 @@ export class ProductController {
             throw new Error(error.message || error.sqlMessage);
         }
     };
+
+    getProduct = async (req: Request, res: Response) => {
+        try {            
+            const products = await productBusiness.getProduct(req.params.search);
+
+            res.send(products);
+        } catch (error: any) {
+            throw new Error(error.message || error.sqlMessage);
+        };
+    };
 };

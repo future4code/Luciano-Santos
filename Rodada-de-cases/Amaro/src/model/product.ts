@@ -9,3 +9,9 @@ export interface ProductInputDTO {
     tags: string;
 };
 
+export interface Search {
+    id: string,
+    name: string,
+    tag: string
+};
+
