@@ -1,4 +1,5 @@
 import { ProductDataBase } from "../data/ProductDataBase";
+import { CustomErrors, InvalidInput, InvalidLength } from "../errors/CustomErrors";
 import { Product, ProductInputDTO } from "../model/product";
 
 const productDB = new ProductDataBase();
@@ -11,6 +12,14 @@ export class ProductBusiness {
         try {
             const { name, tags } = input;
 
+            if ( !name || !tags) {
+                throw new InvalidInput();
+            };
+
+            if (name.length < 3 || tags.length < 3 ) {
+                throw new InvalidLength();
+            };
+            
             const id = idGenerator();
 
             const product: Product = {
@@ -22,7 +31,7 @@ export class ProductBusiness {
             await productDB.insertProduct(product);
 
         } catch (error: any) {
-            throw new Error(error.message || error.sqlMessage);
+            throw new CustomErrors(error.status, error.message);
         }
     };
 
@@ -34,7 +43,7 @@ export class ProductBusiness {
 
                 const tags = product.tags.split(",");
 
-                return { ...product, tags }
+                return { ...product, tags };
 
             });
 

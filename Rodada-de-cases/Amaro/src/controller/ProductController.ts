@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ProductBusiness } from "../business/ProductBusiness";
+import { CustomErrors } from "../errors/CustomErrors";
 import { ProductInputDTO } from "../model/product";
 import { generateId } from "../services/generateId";
 
@@ -22,8 +23,8 @@ export class ProductController {
             
             res.status(201).send("Produto criado ✔️")
         } catch (error: any) {
-            throw new Error(error.message || error.sqlMessage);
-        }
+            res.status(error.status).send(error.message);
+        };
     };
 
     getProduct = async (req: Request, res: Response) => {

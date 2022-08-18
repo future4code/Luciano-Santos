@@ -3,9 +3,9 @@ POST http://localhost:3003/produto
 Content-Type: application/json
 
 {
-    "name": "Camiseta regata",
-    "tags": "personalizada,infantil"
+    "name": "Placa de vídeo",
+    "tags": "GTX,6gb,dual fan"
 }
 
 ### Get Product
-GET http://localhost:3003/produto/caneca
+GET http://localhost:3003/produto/dual fan
