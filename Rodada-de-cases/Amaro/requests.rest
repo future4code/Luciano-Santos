@@ -3,9 +3,9 @@ POST http://localhost:3003/produto
 Content-Type: application/json
 
 {
-    "name": "Placa de vídeo",
-    "tags": "GTX,6gb,dual fan"
+    "name": "Placa De Vídeo PowerColor Radeon RX 6950 XT Red Devil",
+    "tags": "AMD, 16GB GDDR6, Ray Tracing "
 }
 
-### Get Product
-GET http://localhost:3003/produto/dual fan
+### Get Product.
+GET http://localhost:3003/produto?search=

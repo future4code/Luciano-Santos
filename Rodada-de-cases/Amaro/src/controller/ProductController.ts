@@ -29,11 +29,11 @@ export class ProductController {
 
     getProduct = async (req: Request, res: Response) => {
         try {            
-            const products = await productBusiness.getProduct(req.params.search);
+            const products = await productBusiness.getProduct(req.query.search as string);
 
             res.send(products);
         } catch (error: any) {
-            throw new Error(error.message || error.sqlMessage);
+            res.status(error.status).send(error.message);
         };
     };
 };

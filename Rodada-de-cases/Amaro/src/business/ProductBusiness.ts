@@ -37,6 +37,7 @@ export class ProductBusiness {
 
     getProduct = async (search: string) => {
         try {
+            
             const results = await productDB.selectProduct(search);
 
             const products = results.map(product => {
@@ -49,7 +50,7 @@ export class ProductBusiness {
 
             return products;
         } catch (error: any) {
-            throw new Error(error.message || error.sqlMessage);
+            throw new CustomErrors(error.status, error.message);
         };
     };
 };
