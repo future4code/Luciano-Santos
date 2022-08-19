@@ -1,5 +1,5 @@
 import { ProductDataBase } from "../data/ProductDataBase";
-import { CustomErrors, InvalidInput, InvalidLength } from "../errors/CustomErrors";
+import { CustomErrors, InvalidInput, InvalidLength, ProductNotFound } from "../errors/CustomErrors";
 import { Product, ProductInputDTO } from "../model/product";
 
 const productDB = new ProductDataBase();
@@ -49,6 +49,20 @@ export class ProductBusiness {
             });
 
             return products;
+        } catch (error: any) {
+            throw new CustomErrors(error.status, error.message);
+        };
+    };
+
+    deleteProduct = async (productId: string) => {
+        try {
+            
+            const result = await productDB.deleteProduct(productId);
+
+            if (!result) {
+                throw new ProductNotFound();
+            };
+            
         } catch (error: any) {
             throw new CustomErrors(error.status, error.message);
         };

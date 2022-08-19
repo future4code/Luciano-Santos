@@ -28,10 +28,28 @@ export class ProductController {
     };
 
     getProduct = async (req: Request, res: Response) => {
-        try {            
-            const products = await productBusiness.getProduct(req.query.search as string);
+        try {     
+            
+            const { search } = req.query;
+
+            const products = await productBusiness.getProduct(search as string);
 
             res.send(products);
+            
+        } catch (error: any) {
+            res.status(error.status).send(error.message);
+        };
+    };
+
+    deleteProduct = async (req: Request, res: Response) => {
+        try {
+            
+            const { productId } = req.params;
+
+            await productBusiness.deleteProduct(productId);
+
+            res.send("Produto deletado com sucesso ✔️");
+
         } catch (error: any) {
             res.status(error.status).send(error.message);
         };

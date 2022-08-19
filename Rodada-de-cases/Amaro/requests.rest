@@ -4,8 +4,11 @@ Content-Type: application/json
 
 {
     "name": "Placa De Vídeo PowerColor Radeon RX 6950 XT Red Devil",
-    "tags": "AMD, 16GB GDDR6, Ray Tracing "
+    "tags": "AMD,16GB GDDR6,Ray Tracing "
 }
 
-### Get Product.
-GET http://localhost:3003/produto?search=
+### Get product.
+GET http://localhost:3003/produto?search=amd
+
+### Delete product.
+DELETE http://localhost:3003/produto/3c031027-ae16-4054-809b-68962b74265e

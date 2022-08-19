@@ -9,12 +9,17 @@ export class CustomErrors extends Error {
 
 export class InvalidInput extends CustomErrors {
     constructor(){
-        super(422, "Entrada inválida ou vazia, verifique a documentação!");
+        super(422, "Entrada inválida ou vazia, verifique a documentação ❌");
     };
 };
 
 export class InvalidLength extends CustomErrors {
     constructor() {
-        super(422, "O nome do produto ou as tags devem conter pelo menos 3 caracteres!");
+        super(422, "O nome do produto ou as tags devem conter pelo menos 3 caracteres ❌");
+    };
+};
+export class ProductNotFound extends CustomErrors {
+    constructor() {
+        super(404, "Produto não encontrado ❌");
     };
 };

@@ -17,7 +17,7 @@ export class ProductDataBase extends BaseDataBase {
 
     selectProduct = async (search: string) => {
         try {
-            const result  = await ProductDataBase
+            const result = await ProductDataBase
             .connection('Products')
             .select()
             .where('id', search)
@@ -26,6 +26,25 @@ export class ProductDataBase extends BaseDataBase {
             .orderBy('name', 'asc');
 
             return result;
+
+        } catch (error: any) {
+            throw new Error(error.message || error.sqlMessage);
+        };
+    };
+
+    deleteProduct = async (id: string) => {
+        try {
+            const result = await ProductDataBase
+            .connection('Products')
+            .select()
+            .where({id});
+
+            await ProductDataBase
+            .connection('Products')
+            .delete()
+            .where({id});
+            
+            return result[0];
 
         } catch (error: any) {
             throw new Error(error.message || error.sqlMessage);
