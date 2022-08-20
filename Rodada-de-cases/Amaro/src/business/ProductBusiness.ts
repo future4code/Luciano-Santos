@@ -33,6 +33,10 @@ export class ProductBusiness {
     getProduct = async (search: string) => {
 
         const results = await productDB.selectProduct(search);
+        
+        if (results.length < 1) {
+            throw new ProductNotFound();
+        };
 
         const products = results.map(product => {
 

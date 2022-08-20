@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ### Get product.
-GET http://localhost:3003/produto?search=b1654f7c-5498-4411-b1d6-7b93498c9547
+GET http://localhost:3003/produto?search=pizza
 
 ### Update product.
 PUT http://localhost:3003/produto/569a5380-f9e1-417d-ac05-691d07176795
