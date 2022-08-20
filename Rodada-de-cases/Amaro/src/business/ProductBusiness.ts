@@ -54,6 +54,28 @@ export class ProductBusiness {
         };
     };
 
+    updateProduct = async (input: Product) => {
+        try {
+
+            const { id, name, tags } = input;
+
+            const newProduct: Product = {
+                id,
+                name,
+                tags
+            };
+
+            const result = await productDB.updateProduct(newProduct);
+
+            if (!result) {
+                throw new ProductNotFound();
+            };
+            
+        } catch (error: any) {
+            throw new CustomErrors(error.status, error.message);
+        };
+    };
+
     deleteProduct = async (productId: string) => {
         try {
             

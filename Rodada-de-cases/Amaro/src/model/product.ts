@@ -14,4 +14,3 @@ export interface Search {
     name: string,
     tag: string
 };
-

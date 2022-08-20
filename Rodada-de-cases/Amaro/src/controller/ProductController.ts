@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ProductBusiness } from "../business/ProductBusiness";
 import { CustomErrors } from "../errors/CustomErrors";
-import { ProductInputDTO } from "../model/product";
+import { Product, ProductInputDTO } from "../model/product";
 import { generateId } from "../services/generateId";
 
 const productBusiness = new ProductBusiness();
@@ -36,6 +36,28 @@ export class ProductController {
 
             res.send(products);
             
+        } catch (error: any) {
+            res.status(error.status).send(error.message);
+        };
+    };
+
+    updateProduct = async (req: Request, res: Response) => {
+        try {
+            
+            const { productId } = req.params;
+
+            const { name, tags } = req.body;
+
+            const newProduct: Product = {
+                id: productId,
+                name,
+                tags
+            };
+
+            await productBusiness.updateProduct(newProduct);
+
+            res.send("Produto atualizado com sucesso ✔️");
+
         } catch (error: any) {
             res.status(error.status).send(error.message);
         };

@@ -32,6 +32,28 @@ export class ProductDataBase extends BaseDataBase {
         };
     };
 
+    updateProduct = async (newProduct: Product) => {
+        try {
+            const result = await ProductDataBase
+            .connection('Products')
+            .select()
+            .where('id', newProduct.id);
+
+            await ProductDataBase
+            .connection('Products')
+            .where('id', newProduct.id)
+            .update({
+                name: newProduct.name,
+                tags: newProduct.tags
+            });
+
+            return result[0];
+
+        } catch (error: any) {
+            throw new Error(error.message || error.sqlMessage);
+        };
+    };
+
     deleteProduct = async (id: string) => {
         try {
             const result = await ProductDataBase
