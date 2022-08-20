@@ -8,9 +8,3 @@ export interface ProductInputDTO {
     name: string;
     tags: string;
 };
-
-export interface Search {
-    id: string,
-    name: string,
-    tag: string
-};

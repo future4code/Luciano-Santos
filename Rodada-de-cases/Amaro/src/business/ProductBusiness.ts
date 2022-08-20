@@ -9,84 +9,69 @@ export class ProductBusiness {
         input: ProductInputDTO,
         idGenerator: () => string
     ) => {
-        try {
-            const { name, tags } = input;
+        const { name, tags } = input;
 
-            if ( !name || !tags) {
-                throw new InvalidInput();
-            };
+        if (!name || !tags) {
+            throw new InvalidInput();
+        };
 
-            if (name.length < 3 || tags.length < 3 ) {
-                throw new InvalidLength();
-            };
-            
-            const id = idGenerator();
+        if (name.length < 3 || tags.length < 3) {
+            throw new InvalidLength();
+        };
 
-            const product: Product = {
-                id,
-                name,
-                tags
-            };
+        const id = idGenerator();
 
-            await productDB.insertProduct(product);
+        const product: Product = {
+            id,
+            name,
+            tags
+        };
 
-        } catch (error: any) {
-            throw new CustomErrors(error.status, error.message);
-        }
+        await productDB.insertProduct(product);
     };
 
     getProduct = async (search: string) => {
-        try {
-            
-            const results = await productDB.selectProduct(search);
 
-            const products = results.map(product => {
+        const results = await productDB.selectProduct(search);
 
-                const tags = product.tags.split(",");
+        const products = results.map(product => {
 
-                return { ...product, tags };
+            const tags = product.tags.split(",");
 
-            });
+            return { ...product, tags };
 
-            return products;
-        } catch (error: any) {
-            throw new CustomErrors(error.status, error.message);
-        };
+        });
+
+        return products;
     };
 
     updateProduct = async (input: Product) => {
-        try {
 
-            const { id, name, tags } = input;
+        const { id, name, tags } = input;
 
-            const newProduct: Product = {
-                id,
-                name,
-                tags
-            };
+        if (!name || !tags) {
+            throw new InvalidInput();
+        };
 
-            const result = await productDB.updateProduct(newProduct);
+        const newProduct: Product = {
+            id,
+            name,
+            tags
+        };
 
-            if (!result) {
-                throw new ProductNotFound();
-            };
-            
-        } catch (error: any) {
-            throw new CustomErrors(error.status, error.message);
+        const result = await productDB.updateProduct(newProduct);
+
+        if (!result) {
+            throw new ProductNotFound();
         };
     };
 
     deleteProduct = async (productId: string) => {
-        try {
-            
-            const result = await productDB.deleteProduct(productId);
 
-            if (!result) {
-                throw new ProductNotFound();
-            };
-            
-        } catch (error: any) {
-            throw new CustomErrors(error.status, error.message);
+        const result = await productDB.deleteProduct(productId);
+
+        if (!result) {
+            throw new ProductNotFound();
         };
     };
 };

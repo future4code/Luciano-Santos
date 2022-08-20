@@ -3,12 +3,12 @@ POST http://localhost:3003/produto
 Content-Type: application/json
 
 {
-    "name": "Placa De Vídeo PowerColor Radeon RX 6950 XT Red Devil",
-    "tags": "AMD,16GB GDDR6,Ray Tracing"
+    "name": "Placa de Vídeo Gigabyte Geforce RTX 3080 VISION OC",
+    "tags": ""
 }
 
 ### Get product.
-GET http://localhost:3003/produto?search=amd
+GET http://localhost:3003/produto?search=b1654f7c-5498-4411-b1d6-7b93498c9547
 
 ### Update product.
 PUT http://localhost:3003/produto/569a5380-f9e1-417d-ac05-691d07176795

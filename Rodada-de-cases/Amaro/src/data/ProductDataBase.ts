@@ -1,23 +1,16 @@
-import { Product, Search } from "../model/product";
+import { Product } from "../model/product";
 import { BaseDataBase } from "./BaseDataBase";
 
 export class ProductDataBase extends BaseDataBase {
-    insertProduct = async (
-        product: Product
-    ) => {
-        try {
-            await ProductDataBase
-                .connection('Products')
-                .insert(product);
-
-        } catch (error: any) {
-            throw new Error(error.message || error.sqlMessage);
-        };
+    insertProduct = async (product: Product) => {
+        await ProductDataBase
+            .connection('Products')
+            .insert(product);
     };
 
     selectProduct = async (search: string) => {
-        try {
-            const result = await ProductDataBase
+
+        const result = await ProductDataBase
             .connection('Products')
             .select()
             .where('id', search)
@@ -25,21 +18,17 @@ export class ProductDataBase extends BaseDataBase {
             .orWhereILike('tags', `%${search}%`)
             .orderBy('name', 'asc');
 
-            return result;
+        return result;
 
-        } catch (error: any) {
-            throw new Error(error.message || error.sqlMessage);
-        };
     };
 
     updateProduct = async (newProduct: Product) => {
-        try {
-            const result = await ProductDataBase
+        const result = await ProductDataBase
             .connection('Products')
             .select()
             .where('id', newProduct.id);
 
-            await ProductDataBase
+        await ProductDataBase
             .connection('Products')
             .where('id', newProduct.id)
             .update({
@@ -47,29 +36,20 @@ export class ProductDataBase extends BaseDataBase {
                 tags: newProduct.tags
             });
 
-            return result[0];
-
-        } catch (error: any) {
-            throw new Error(error.message || error.sqlMessage);
-        };
+        return result[0];
     };
 
     deleteProduct = async (id: string) => {
-        try {
-            const result = await ProductDataBase
+        const result = await ProductDataBase
             .connection('Products')
             .select()
-            .where({id});
+            .where({ id });
 
-            await ProductDataBase
+        await ProductDataBase
             .connection('Products')
             .delete()
-            .where({id});
-            
-            return result[0];
+            .where({ id });
 
-        } catch (error: any) {
-            throw new Error(error.message || error.sqlMessage);
-        };
+        return result[0];
     };
 };

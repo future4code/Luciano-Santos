@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { ProductBusiness } from "../business/ProductBusiness";
-import { CustomErrors } from "../errors/CustomErrors";
 import { Product, ProductInputDTO } from "../model/product";
 import { generateId } from "../services/generateId";
 
@@ -8,72 +7,54 @@ const productBusiness = new ProductBusiness();
 
 export class ProductController {
     createProduct = async (req: Request, res: Response) => {
-        try {
-            const {
-                name,
-                tags
-            } = req.body;
+        const {
+            name,
+            tags
+        } = req.body;
 
-            const product: ProductInputDTO = {
-                name,
-                tags
-            };
-
-            await productBusiness.createProduct(product, generateId);
-            
-            res.status(201).send("Produto criado ✔️")
-        } catch (error: any) {
-            res.status(error.status).send(error.message);
+        const product: ProductInputDTO = {
+            name,
+            tags
         };
+
+        await productBusiness.createProduct(product, generateId);
+
+        res.status(201).send("Produto criado ✔️");
     };
 
     getProduct = async (req: Request, res: Response) => {
-        try {     
-            
-            const { search } = req.query;
 
-            const products = await productBusiness.getProduct(search as string);
+        const { search } = req.query;
 
-            res.send(products);
-            
-        } catch (error: any) {
-            res.status(error.status).send(error.message);
-        };
+        const products = await productBusiness.getProduct(search as string);
+
+        res.send(products);
+
     };
 
     updateProduct = async (req: Request, res: Response) => {
-        try {
-            
-            const { productId } = req.params;
 
-            const { name, tags } = req.body;
+        const { productId } = req.params;
 
-            const newProduct: Product = {
-                id: productId,
-                name,
-                tags
-            };
+        const { name, tags } = req.body;
 
-            await productBusiness.updateProduct(newProduct);
-
-            res.send("Produto atualizado com sucesso ✔️");
-
-        } catch (error: any) {
-            res.status(error.status).send(error.message);
+        const newProduct: Product = {
+            id: productId,
+            name,
+            tags
         };
+
+        await productBusiness.updateProduct(newProduct);
+
+        res.send("Produto atualizado com sucesso ✔️");
     };
 
     deleteProduct = async (req: Request, res: Response) => {
-        try {
-            
-            const { productId } = req.params;
 
-            await productBusiness.deleteProduct(productId);
+        const { productId } = req.params;
 
-            res.send("Produto deletado com sucesso ✔️");
+        await productBusiness.deleteProduct(productId);
 
-        } catch (error: any) {
-            res.status(error.status).send(error.message);
-        };
+        res.send("Produto deletado com sucesso ✔️");
     };
 };
