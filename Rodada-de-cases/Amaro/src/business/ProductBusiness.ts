@@ -1,6 +1,6 @@
 import { ProductDataBase } from "../data/ProductDataBase";
 import { Products } from "../domain/product";
-import { InvalidInput, InvalidLength, ProductNotFound } from "../errors/CustomErrors";
+import { InvalidInput, InvalidLength, ProductNotFound } from "../common/CustomErrors";
 import { Product, ProductInputDTO } from "../model/product";
 import { IGenerateId } from "./ports";
 
@@ -18,10 +18,6 @@ export class ProductBusiness {
         const { name, price, tags } = input;
 
         new Products(name, price, tags);
-
-        if (!name || !price || !tags) {
-            throw new InvalidInput();
-        };
 
         const id = this.generateId.generate();
 
@@ -58,9 +54,7 @@ export class ProductBusiness {
 
         const { id, name, price, tags } = input;
 
-        if (!name || !price || !tags) {
-            throw new InvalidInput();
-        };
+        new Products(name, price, tags, id);
 
         const newProduct: Product = {
             id,

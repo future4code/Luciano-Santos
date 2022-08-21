@@ -24,7 +24,7 @@ export class ProductController {
 
         await productBusiness.createProduct(product);
 
-        res.status(201).send("Produto criado ✔️");
+        res.status(201).send("Produto criado");
     };
 
     getProduct = async (req: Request, res: Response) => {
