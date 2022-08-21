@@ -3,12 +3,13 @@ POST http://localhost:3003/produto
 Content-Type: application/json
 
 {
-    "name": "Placa de Vídeo Gigabyte Geforce RTX 3080 VISION OC",
-    "tags": ""
+    "name": "Placa de Vídeo Galax NVIDIA GeForce RTX 2060 Super V2",
+    "price": 2599,
+    "tags": "GeForce,NVIDIA,8GB GDDR6,Ray Tracing"
 }
 
 ### Get product.
-GET http://localhost:3003/produto?search=pizza
+GET http://localhost:3003/produto?search=GeForce
 
 ### Update product.
 PUT http://localhost:3003/produto/569a5380-f9e1-417d-ac05-691d07176795

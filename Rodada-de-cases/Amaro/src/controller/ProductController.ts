@@ -9,11 +9,13 @@ export class ProductController {
     createProduct = async (req: Request, res: Response) => {
         const {
             name,
+            price,
             tags
         } = req.body;
 
         const product: ProductInputDTO = {
             name,
+            price,
             tags
         };
 
@@ -36,11 +38,12 @@ export class ProductController {
 
         const { productId } = req.params;
 
-        const { name, tags } = req.body;
+        const { name, price, tags } = req.body;
 
         const newProduct: Product = {
             id: productId,
             name,
+            price,
             tags
         };
 

@@ -1,5 +1,5 @@
 import { ProductDataBase } from "../data/ProductDataBase";
-import { CustomErrors, InvalidInput, InvalidLength, ProductNotFound } from "../errors/CustomErrors";
+import { InvalidInput, InvalidLength, ProductNotFound } from "../errors/CustomErrors";
 import { Product, ProductInputDTO } from "../model/product";
 
 const productDB = new ProductDataBase();
@@ -9,9 +9,9 @@ export class ProductBusiness {
         input: ProductInputDTO,
         idGenerator: () => string
     ) => {
-        const { name, tags } = input;
+        const { name, price, tags } = input;
 
-        if (!name || !tags) {
+        if (!name || !price || !tags) {
             throw new InvalidInput();
         };
 
@@ -24,6 +24,7 @@ export class ProductBusiness {
         const product: Product = {
             id,
             name,
+            price,
             tags
         };
 
@@ -51,15 +52,16 @@ export class ProductBusiness {
 
     updateProduct = async (input: Product) => {
 
-        const { id, name, tags } = input;
+        const { id, name, price, tags } = input;
 
-        if (!name || !tags) {
+        if (!name || !price || !tags) {
             throw new InvalidInput();
         };
 
         const newProduct: Product = {
             id,
             name,
+            price,
             tags
         };
 
