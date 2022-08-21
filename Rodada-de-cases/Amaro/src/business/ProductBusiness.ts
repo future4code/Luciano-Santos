@@ -1,25 +1,29 @@
 import { ProductDataBase } from "../data/ProductDataBase";
+import { Products } from "../domain/product";
 import { InvalidInput, InvalidLength, ProductNotFound } from "../errors/CustomErrors";
 import { Product, ProductInputDTO } from "../model/product";
+import { IGenerateId } from "./ports";
 
 const productDB = new ProductDataBase();
 
 export class ProductBusiness {
+
+    constructor(
+        private generateId: IGenerateId
+    ){};
+    
     createProduct = async (
-        input: ProductInputDTO,
-        idGenerator: () => string
+        input: ProductInputDTO
     ) => {
         const { name, price, tags } = input;
+
+        new Products(name, price, tags);
 
         if (!name || !price || !tags) {
             throw new InvalidInput();
         };
 
-        if (name.length < 3 || tags.length < 3) {
-            throw new InvalidLength();
-        };
-
-        const id = idGenerator();
+        const id = this.generateId.generate();
 
         const product: Product = {
             id,

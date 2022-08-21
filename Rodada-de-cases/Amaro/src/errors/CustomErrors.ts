@@ -23,3 +23,8 @@ export class ProductNotFound extends CustomErrors {
         super(404, "Produto não encontrado ❌");
     };
 };
+export class InvalidPrice extends CustomErrors {
+    constructor() {
+        super(422, "O parâmetro 'price' deve ser to tipo 'number', ex.: 100 ou 99.99 ❌");
+    };
+};

@@ -1,11 +1,14 @@
 import { Request, Response } from "express";
 import { ProductBusiness } from "../business/ProductBusiness";
 import { Product, ProductInputDTO } from "../model/product";
-import { generateId } from "../services/generateId";
+import { GenerateId } from "../services/generateId";
 
-const productBusiness = new ProductBusiness();
+const generateId = new GenerateId();
+
+const productBusiness = new ProductBusiness(generateId);
 
 export class ProductController {
+    
     createProduct = async (req: Request, res: Response) => {
         const {
             name,
@@ -19,7 +22,7 @@ export class ProductController {
             tags
         };
 
-        await productBusiness.createProduct(product, generateId);
+        await productBusiness.createProduct(product);
 
         res.status(201).send("Produto criado ✔️");
     };

@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "name": "Placa de Vídeo Galax NVIDIA GeForce RTX 2060 Super V2",
-    "price": 2599,
+    "price": "2599",
     "tags": "GeForce,NVIDIA,8GB GDDR6,Ray Tracing"
 }
 
