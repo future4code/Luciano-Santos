@@ -1,4 +1,4 @@
-import { InvalidPrice, InvalidInput, InvalidNameLength } from "../common/CustomErrors";
+import { InvalidInput, InvalidNameLength, InvalidInputPrice, InvalidTypePrice } from "../common/CustomErrors";
 
 export class Products {
     constructor(
@@ -8,7 +8,8 @@ export class Products {
         private id?: string
     ){
         this.validateEmptyInput(name, price, tags);
-        this.validatePrice(price);
+        this.validateInputPrice(price);
+        this.validateTypePrice(price);
         this.validateNameLength(name);
     };
 
@@ -18,8 +19,12 @@ export class Products {
         };
     };
 
-    validatePrice(price: number){
-        if (price < 0) throw new InvalidPrice();
+    validateInputPrice(price: number){
+        if (price < 0) throw new InvalidInputPrice();
+    };
+
+    validateTypePrice(price: number){
+        if (typeof price !== "number") throw new InvalidTypePrice();
     };
 
     validateNameLength(name: string){

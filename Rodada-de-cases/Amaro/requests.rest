@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "name": "Placa De Vídeo Radeon RX 6950 XT Red Devil",
-    "price": "4999",
+    "price": 7899,
     "tags": "PowerColor,AMD,16GB GDDR6,Ray Tracing"
 }
 
@@ -17,7 +17,7 @@ Content-Type: application/json
 
 {
     "name": "Placa De Vídeo Radeon RX 6950 XT Red Devil",
-    "price": "4999",
+    "price": 4999,
     "tags": "PowerColor,AMD,16GB GDDR6,Ray Tracing"
 }
 

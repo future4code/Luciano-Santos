@@ -25,9 +25,14 @@ export class ProductNotFound extends CustomErrors {
     };
 };
 
-export class InvalidPrice extends CustomErrors {
+export class InvalidInputPrice extends CustomErrors {
     constructor() {
         super(422, "O parâmetro 'price' não deve ser um número negativo");
+    };
+};
+export class InvalidTypePrice extends CustomErrors {
+    constructor() {
+        super(422, "O parâmetro 'price' deve ser do tipo 'number'");
     };
 };
 
