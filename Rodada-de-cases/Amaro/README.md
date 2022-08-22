@@ -21,6 +21,48 @@ Ferramentas utilizadas na construção do projeto:
 - [Ts-Jest](https://kulshekhar.github.io/ts-jest/)
 - [MySql](https://www.mysql.com/)
 
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
+
+### Instruções gerais
+
+```bash
+# Clone este repositório
+$ git clone <https://github.com/Amaro.git>
+```
+
+### 🎲 Rodando...
+
+```bash
+# Acesse a pasta do projeto no terminal/cmd
+$ cd Amaro
+
+# Instale as dependências
+$ npm install
+
+# Crie um arquivo .env na raiz do projeto, com as seguintes informações e complete as aspas com seu acesso a sua database(SQL):
+DB_HOST = ""
+DB_USER = ""
+DB_PASSWORD = ""
+DB_SCHEMA = ""
+
+# Cria a tabela 'Products', através do arquivo tables.sql
+$ npm run migrations
+
+# Execute o script dev
+$ npm run dev
+
+# O servidor iniciará na porta:3003.
+```
+
+### 🤔 Testando...
+
+```bash
+# Execute o script test
+$ npm test
+```
 
 ### 📃 Documentação
 
