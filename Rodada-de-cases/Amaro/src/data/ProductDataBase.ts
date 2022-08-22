@@ -33,6 +33,7 @@ export class ProductDataBase extends BaseDataBase {
             .where('id', newProduct.id)
             .update({
                 name: newProduct.name,
+                price: newProduct.price,
                 tags: newProduct.tags
             });
 
