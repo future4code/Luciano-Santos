@@ -1,0 +1,25 @@
+### Create product.
+POST https://amaro-catalog.herokuapp.com/produto
+Content-Type: application/json
+
+{
+    "name": "Placa De Vídeo Radeon RX 6950 XT Red Devil",
+    "price": 7899,
+    "tags": "PowerColor,AMD,16GB GDDR6,Ray Tracing"
+}
+
+### Get product.
+GET https://amaro-catalog.herokuapp.com/produto?search=
+
+### Update product.
+PUT https://amaro-catalog.herokuapp.com/produto/569a5380-f9e1-417d-ac05-691d07176795
+Content-Type: application/json
+
+{
+    "name": "Placa De Vídeo Radeon RX 6950 XT Red Devil",
+    "price": 4999,
+    "tags": "PowerColor,AMD,16GB GDDR6,Ray Tracing"
+}
+
+### Delete product.
+DELETE https://amaro-catalog.herokuapp.com/produto/3c031027-ae16-4054-809b-68962b74265e
